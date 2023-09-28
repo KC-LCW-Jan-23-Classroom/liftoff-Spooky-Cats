@@ -1,0 +1,32 @@
+﻿Worksheet Link - Group Expectations Worksheet
+Intro
+Go around and introduce yourself to the group
+1. Name and pronouns
+2. What was your favorite thing you learned during Unit 1 or Unit 2?
+3. What are you excited to get out of Unit 3? 
+Setting Group Expectations
+You’ll need either a Miro board or a Jamboard set up for this activity. Each member should put sticky notes on the slides that you’re working on.
+Slides
+1. What is something that you need to be successful during Unit 3?
+* Communication
+* Ask for help when needed
+* Be able to lean on each other
+* Honesty
+2. What’s important for you when you work in groups?
+* Direct communication
+3. What’s something that you are worried about for Unit 3?
+   * Finding a good time for everyone to meet.
+   * Everyone pulling their weight
+
+
+After you’ve spent some time talking through the sticky notes, create a list of the expectations that your group has for their project and how they’ll work together.
+Expectations that we recommend also having for your group
+* Ask for help when needed
+* Be willing to help each other instead of displaying an “it’s not my job” attitude
+* Be flexible to assist with group needs
+* Consistently communicate about where you are at with the project
+* Attend all group meetings, communicating if you need to miss a class ahead of time
+* Treat it like a job, not like a typical group project
+   * We will be working on a project that may mimic how you will work on a dev model.addAttribute("employers", employerRepository.findAll());
+   *         model.addAttribute("skills", skillRepository.findAll());team
+   * If you consistently do not show up to work or are not doing the tasks that you committed to completing, you may be removed from the course.
