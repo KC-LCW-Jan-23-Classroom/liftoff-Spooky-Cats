@@ -1,0 +1,39 @@
+
+.header {
+    height: 70px;
+    background-color: #45b678;
+    color: white;
+    font-family: system-ui;
+    font-weight: 600;
+  }
+
+  .header #title{
+    font-size: xx-large;
+    float: left	;
+    padding-left: 10px;
+    padding-top: 15px;
+  }
+
+
+  .header #links {
+    align-items: right;
+    float: right;
+    padding-right: 10px;
+    padding-top: 10px;
+  }
+
+  .header #login {
+    color: white;
+  }
+
+  .header #login:hover {
+    color: rgb(60, 123, 206);
+  }
+
+  .header #register {
+    color: white;
+  }
+
+  .header #register:hover {
+    color: rgb(60, 123, 206);
+  }
