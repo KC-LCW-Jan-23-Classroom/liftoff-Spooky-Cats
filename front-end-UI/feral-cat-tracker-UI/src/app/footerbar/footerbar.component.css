@@ -1,0 +1,18 @@
+.footer{
+  background: #45b678;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  font-family: system-ui;
+  font-size: medium;
+  text-align: center;
+  color: white;
+  }
+
+  .footer #contact{
+    color: white;
+  }
+
+  .header #contact:hover {
+    color: rgb(60, 123, 206);
+  }
