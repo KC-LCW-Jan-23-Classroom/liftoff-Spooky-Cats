@@ -25,15 +25,9 @@ export class contactData{
 })
 export class ContactComponent {
 
-  selectedSubject!: string;
-
-  onSelected(value:string): void {
-		this.selectedSubject = value;
-	}
-
   onClickSubmit(data: contactData) {
     // HTMLOutputElement.post(localhost:8080/contact,data);
-    alert("To do: ACTUALLY submit" + JSON.stringify(data) + this.selectedSubject);
+    alert("To do: ACTUALLY submit" + JSON.stringify(data));
  }
   
 
