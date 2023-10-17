@@ -1,0 +1,48 @@
+<div class="contact">
+
+    <head>
+        <title>Contact Us - Feral Cat Tracker</title>
+    </head>
+
+    <body>
+
+        <h1>Contact Us!</h1>
+        <p> Please reach out to us for any questions</p>
+
+        <form #contact="ngForm" (ngSubmit)="onClickSubmit(contact.value)">
+            <div class="field">
+                <label class="label">Name: </label>
+                <input type="text" name="name" class="input" placeholder="Enter Name" ngModel>
+            </div>
+
+            <div class="field">
+                <label class="label">Email: </label>
+                <input type="email" name="email" class="input" placeholder="Enter Email" ngModel>
+            </div>
+
+            <div class="field">
+                <label class="label">Phone Number: </label>
+                <input type="text" name="phoneNumber" class="input" placeholder="Enter Phone Number" ngModel>
+            </div>
+
+            <div class="field">
+                <label class="label">Reason for Contacting Us: </label>
+                <select name="selectedSubject" ngModel >
+                    <option [ngValue]="'Cat Bounty'">Cat Bounty</option>
+                    <option [ngValue]="'Volunteering Opportunities'">Volunteering Opportunities</option>
+                    <option [ngValue]="'Other/General Inquiries'">Other/General Inquiries</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label class="label">Message: </label>
+                <textarea name="message" class="textarea" ngModel></textarea>
+            </div>
+
+            <button type="submit" class="button">
+                Send
+            </button>
+        </form>
+
+    </body>
+</div>

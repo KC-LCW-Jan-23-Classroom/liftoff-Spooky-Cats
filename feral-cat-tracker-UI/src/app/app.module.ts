@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ContactComponent} from './contact/contact.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderbarComponent } from './headerbar/headerbar.component';
@@ -15,15 +16,16 @@ import { HttpClientModule } from  '@angular/common/http';
     HeaderbarComponent,
     NavbarComponent,
     FooterbarComponent,
-    HomeComponent,
     LoginComponent
+    ContactComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
     ReactiveFormsModule,
     HttpClientModule
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
