@@ -42,17 +42,6 @@ public class AuthenticationController {
         session.setAttribute(userSessionKey, user.getId());
     }
 
-    // Handled in Angular with routes
-    @GetMapping("/register")
-    public String displayRegistrationForm(Model model) {
-        model.addAttribute(new RegisterFormDTO());
-        model.addAttribute("title", "Register");
-        return "register";
-    }
-
-//    Input Object - @ResponseBody LoginFormDTO
-//
-//    Output Object - ResponseEntity<MAKE OBJECT>
 
     @PostMapping("/register")
     public ResponseEntity<String> processRegistrationForm(@RequestBody RegisterFormDTO registerFormDTO,
@@ -62,7 +51,7 @@ public class AuthenticationController {
 
         try{
 
-           User  existingUser = userRepository.findByUsername(registerFormDTO.getUsername());
+           User existingUser = userRepository.findByUsername(registerFormDTO.getUsername());
            User newUser = new User(registerFormDTO.getUsername(), registerFormDTO.getPassword(), registerFormDTO.getFirstName(), registerFormDTO.getLastName(), registerFormDTO.getEmail(), registerFormDTO.getPhoneNumber(), registerFormDTO.getAddress());
             if (existingUser == null && registerFormDTO.getUsername() != null && registerFormDTO.getPassword() != null){
                     response = ResponseEntity
@@ -70,11 +59,17 @@ public class AuthenticationController {
                             .body("Given user details are successfully registered");
                 userRepository.save(newUser);
                 } else if(existingUser != null) {
-                throw new Exception("User already exists");
+                response = ResponseEntity
+                        .status(HttpStatus.BAD_REQUEST)
+                        .body("User Already Exists."); // works
             } else if(registerFormDTO.getUsername() == null) {
-                throw new Exception("Username required");
+                response = ResponseEntity
+                        .status(HttpStatus.BAD_REQUEST)
+                        .body("Username required."); // works
             } else if (registerFormDTO.getPassword() == null) {
-                throw new Exception("Password required");
+                response = ResponseEntity
+                        .status(HttpStatus.BAD_REQUEST)
+                        .body("Password required"); // does NOT work
             }
             }catch (Exception ex){
                 response = ResponseEntity
@@ -88,57 +83,31 @@ public class AuthenticationController {
             return response;
         }
 
-        //HANDLE ON FRONT END
-//        String password = registerFormDTO.getPassword();
-//        String verifyPassword = registerFormDTO.getVerifyPassword();
-//        if (!password.equals(verifyPassword)) {
-//            errors.rejectValue("password", "passwords.mismatch", "Passwords do not match");
-//            model.addAttribute("title", "Register");
-//            return "register";
-//        }
-
-//        User newUser = new User(registerFormDTO.getUsername(), registerFormDTO.getPassword(), registerFormDTO.getFirstName(), registerFormDTO.getLastName(), registerFormDTO.getEmail(), registerFormDTO.getPhoneNumber(), registerFormDTO.getAddress());
-//        userRepository.save(newUser);
-//
-//        setUserInSession(request.getSession(), newUser);
-//
-//        return ResponseEntity.ok(newUser);
-//    }
-
-    @GetMapping("/login")
-    public String displayLoginForm(Model model) {
-        model.addAttribute(new LoginFormDTO());
-        model.addAttribute("title", "Log In");
-        return "login";
-    }
 
     @PostMapping("/login")
-    public String processLoginForm(@RequestBody LoginFormDTO loginFormDTO, HttpServletRequest request) throws Exception {
+    public ResponseEntity<User> processLoginForm(@RequestBody LoginFormDTO loginFormDTO, HttpServletRequest request) throws Exception {
 
+        ResponseEntity response = null;
 
         User theUser = userRepository.findByUsername(loginFormDTO.getUsername());
-
-        if (theUser == null) {
-            throw new Exception("Username does not exist");
-
-        }
-
         String password = loginFormDTO.getPassword();
-
-        if (!theUser.isMatchingPassword(password)) {
-            throw new Exception("Password does not match");
-
+        if (theUser == null) {
+//            throw new Exception("Username does not exist");
+            response = ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body("Username does not exist");
+        }else if (!theUser.isMatchingPassword(password)) {
+//            throw new Exception("Password does not match");
+            response = ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body("Password does not match");
+        } else {
+            setUserInSession(request.getSession(), theUser);
+            response = ResponseEntity
+                    .status(HttpStatus.CREATED)
+                    .body(theUser);
         }
-
-        setUserInSession(request.getSession(), theUser);
-
-        return "redirect:";
-    }
-
-    @GetMapping("/logout")
-    public String logout(HttpServletRequest request){
-        request.getSession().invalidate();
-        return "redirect:/login";
+        return  response;
     }
 
 }
