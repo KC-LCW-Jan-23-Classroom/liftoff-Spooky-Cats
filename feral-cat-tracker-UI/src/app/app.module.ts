@@ -16,7 +16,7 @@ import { HttpClientModule } from  '@angular/common/http';
     HeaderbarComponent,
     NavbarComponent,
     FooterbarComponent,
-    LoginComponent
+    LoginComponent,
     ContactComponent,
     HomeComponent
   ],
@@ -24,7 +24,7 @@ import { HttpClientModule } from  '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
     FormsModule
   ],
   providers: [],
