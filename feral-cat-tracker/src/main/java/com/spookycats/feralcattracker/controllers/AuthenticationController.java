@@ -47,56 +47,45 @@ public class AuthenticationController {
         session.setAttribute(userSessionKey, user.getId());
     }
 
-
     @PostMapping(value= "/register" )
     public ResponseEntity<Map> processRegistrationForm(@RequestBody RegisterFormDTO registerFormDTO,
-                                                          HttpServletRequest request)  {
-
+                                                       HttpServletRequest request)  {
         ResponseEntity response = null;
-
         Map<String, String> responseBody = new HashMap<>();
-
-
-
         try{
-
-           User existingUser = userRepository.findByUsername(registerFormDTO.getUsername());
-           User newUser = new User(registerFormDTO.getUsername(), registerFormDTO.getPassword(), registerFormDTO.getFirstName(), registerFormDTO.getLastName(), registerFormDTO.getEmail(), registerFormDTO.getPhoneNumber(), registerFormDTO.getAddress());
-            if (existingUser == null && registerFormDTO.getUsername() != null && registerFormDTO.getPassword() != null){
+            User existingUser = userRepository.findByUsername(registerFormDTO.getUsername());
+            if (existingUser == null && registerFormDTO.getUsername().isEmpty() && registerFormDTO.getPassword().isEmpty()){
                 responseBody.put("message", "Given user details are successfully registered");
-                    response = ResponseEntity
-                            .status(HttpStatus.CREATED)
-                            .body(responseBody);
+                response = ResponseEntity
+                        .status(HttpStatus.CREATED)
+                        .body(responseBody);
+                User newUser = new User(registerFormDTO.getUsername(), registerFormDTO.getPassword(), registerFormDTO.getFirstName(), registerFormDTO.getLastName(), registerFormDTO.getEmail(), registerFormDTO.getPhoneNumber(), registerFormDTO.getAddress());
+                setUserInSession(request.getSession(), newUser);
                 userRepository.save(newUser);
-                } else if(existingUser != null) {
+            } else if(existingUser != null) {
                 responseBody.put("message", "User Already Exists.");
                 response = ResponseEntity
                         .status(HttpStatus.BAD_REQUEST)
                         .body(responseBody);
-            } else if(registerFormDTO.getUsername() == null) {
+            } else if(registerFormDTO.getUsername().isEmpty()) {
                 responseBody.put("message", "Username required.");
                 response = ResponseEntity
                         .status(HttpStatus.BAD_REQUEST)
                         .body(responseBody);
-            } else if (registerFormDTO.getPassword() == null) {
+            } else if (registerFormDTO.getPassword().isEmpty()) {
                 responseBody.put("message", "Password required");
                 response = ResponseEntity
                         .status(HttpStatus.BAD_REQUEST)
                         .body(responseBody);
             }
-            }catch (Exception ex){
+        }catch (Exception ex){
             responseBody.put("message", "An exception occurred due to " + ex.getMessage());
-                response = ResponseEntity
-                        .status(HttpStatus.INTERNAL_SERVER_ERROR)
-                        .body(responseBody);
-            }
-
-        User newUser = new User(registerFormDTO.getUsername(), registerFormDTO.getPassword(), registerFormDTO.getFirstName(), registerFormDTO.getLastName(), registerFormDTO.getEmail(), registerFormDTO.getPhoneNumber(), registerFormDTO.getAddress());
-
-        setUserInSession(request.getSession(), newUser);
-            return response;
+            response = ResponseEntity
+                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(responseBody);
         }
-
+        return response;
+    }
 
     @PostMapping("/login")
     public ResponseEntity<User> processLoginForm(@RequestBody LoginFormDTO loginFormDTO, HttpServletRequest request) throws Exception {
