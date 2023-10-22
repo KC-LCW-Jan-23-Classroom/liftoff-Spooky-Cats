@@ -1,0 +1,45 @@
+<div class="login-text-container">Register</div>
+<div class="form-container">
+    <form [formGroup]="registerGroup"(ngSubmit)="registerProcess()"> 
+        <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input type="username" class="form-control" id="username" aria-describedby="usernameField"
+                formControlName="username">
+        </div>
+        <div class="mb-3">
+            <label for="firstName" class="form-label">First Name</label>
+            <input type="firstName" class="form-control" id="firstName" aria-describedby="firstNameField"
+                formControlName="firstName">
+        </div>
+        <div class="mb-3">
+            <label for="lastName" class="form-label">Last Name</label>
+            <input type="lasttName" class="form-control" id="lastName" aria-describedby="lastNameField"
+                formControlName="lastName">
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" aria-describedby="emailField" formControlName="email">
+        </div>
+        <div class="mb-3">
+            <label for="phoneNumber" class="form-label">Phone Number</label>
+            <input type="phoneNumber" class="form-control" id="phoneNumber" aria-describedby="phoneNumberField"
+                formControlName="phoneNumber">
+        </div>
+        <div class="mb-3">
+            <label for="address" class="form-label">Address</label>
+            <input type="address" class="form-control" id="address" aria-describedby="addressField"
+                formControlName="address">
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" formControlName="password">
+        </div>
+        <div class="mb-3">
+            <label for="confirmPassword" class="form-label">Confirm Password</label>
+            <input type="password" class="form-control" id="confirmPassword" aria-describedby="confirmPasswordField" formControlName="firstName">
+          </div>
+        <div class="btn-container">
+            <button type="submit" class="btn btn-primary">Create an Account</button>
+        </div>
+    </form>
+</div>

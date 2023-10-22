@@ -10,6 +10,7 @@ import { FooterbarComponent } from './footerbar/footerbar.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from  '@angular/common/http';
+import { RegisterComponent } from './register/register.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +19,8 @@ import { HttpClientModule } from  '@angular/common/http';
     FooterbarComponent,
     LoginComponent,
     ContactComponent,
-    HomeComponent
+    HomeComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
