@@ -19,6 +19,12 @@
     padding-top: 15px;
   }
 
+  .header #donate {
+    align-items: right;
+    float: right;
+    padding-right: 10px;
+    padding-top: 10px;
+  }
 
   .header #links {
     align-items: right;
