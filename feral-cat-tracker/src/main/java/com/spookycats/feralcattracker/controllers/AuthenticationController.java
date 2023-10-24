@@ -54,7 +54,7 @@ public class AuthenticationController {
         Map<String, String> responseBody = new HashMap<>();
         try{
             User existingUser = userRepository.findByUsername(registerFormDTO.getUsername());
-            if (existingUser == null && registerFormDTO.getUsername().isEmpty() && registerFormDTO.getPassword().isEmpty()){
+            if (existingUser == null && !registerFormDTO.getUsername().isEmpty() && !registerFormDTO.getPassword().isEmpty()){
                 responseBody.put("message", "Given user details are successfully registered");
                 response = ResponseEntity
                         .status(HttpStatus.CREATED)
