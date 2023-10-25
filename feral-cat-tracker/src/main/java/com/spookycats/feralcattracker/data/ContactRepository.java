@@ -6,5 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface ContactRepository extends CrudRepository<ContactSubmission, Integer> {
 
-    ContactSubmission saveContactSubmission(ContactSubmission contactSubmission);
+    ContactSubmission save(ContactSubmission contactSubmission);
+
+    ContactSubmission findByName(String name);
 }

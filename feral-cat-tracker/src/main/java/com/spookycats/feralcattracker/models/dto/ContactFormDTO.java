@@ -1,5 +1,7 @@
 package com.spookycats.feralcattracker.models.dto;
 
+import org.jetbrains.annotations.NotNull;
+
 public class ContactFormDTO {
     private String name;
     private String email;

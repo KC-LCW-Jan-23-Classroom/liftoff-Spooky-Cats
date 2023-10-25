@@ -2,6 +2,7 @@ package com.spookycats.feralcattracker.controllers;
 
 import com.spookycats.feralcattracker.data.ContactRepository;
 import com.spookycats.feralcattracker.data.UserRepository;
+import com.spookycats.feralcattracker.models.ContactSubmission;
 import com.spookycats.feralcattracker.models.User;
 import com.spookycats.feralcattracker.models.dto.ContactFormDTO;
 import com.spookycats.feralcattracker.models.dto.LoginFormDTO;
@@ -28,12 +29,27 @@ public class ContactController {
     public ResponseEntity<String> processContactForm(@RequestBody ContactFormDTO contactFormDTO,
                                                           HttpServletRequest request)  {
 
-        ResponseEntity response = null;
+        if(contactFormDTO == null || contactFormDTO.getName() == null)
+        {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Contact data contains null data");
 
-
-            return response;
         }
 
-
-
+        ResponseEntity response;
+        final ContactSubmission contactSubmission = new ContactSubmission();
+        contactSubmission.setEmail(contactFormDTO.getEmail());
+        contactSubmission.setReasonForContact(contactFormDTO.getReasonForContact());
+        contactSubmission.setMessage(contactFormDTO.getMessage());
+        contactSubmission.setName(contactFormDTO.getName());
+        contactSubmission.setPhoneNumber(contactFormDTO.getPhoneNumber());
+        try {
+            contactRepository.save(contactSubmission);
+        }catch (Exception e)
+        {
+            response = ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Contact data could not be saved");
+            return response;
+        }
+        response = ResponseEntity.status(HttpStatus.OK).body(contactFormDTO);
+            return response;
+        }
 }
