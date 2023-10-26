@@ -36,6 +36,7 @@ public class ContactController {
         }
 
         ResponseEntity response;
+
         final ContactSubmission contactSubmission = new ContactSubmission();
         contactSubmission.setEmail(contactFormDTO.getEmail());
         contactSubmission.setReasonForContact(contactFormDTO.getReasonForContact());
@@ -49,7 +50,7 @@ public class ContactController {
             response = ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Contact data could not be saved");
             return response;
         }
-        response = ResponseEntity.status(HttpStatus.OK).body(contactFormDTO);
+        response = ResponseEntity.status(HttpStatus.OK).body("Contact message saved");
             return response;
         }
 }

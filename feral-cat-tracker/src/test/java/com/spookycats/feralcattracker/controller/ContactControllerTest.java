@@ -55,6 +55,24 @@ public class ContactControllerTest {
     }
 
     @Test
+    void endpointReturnsAllFieldsOk() throws Exception {
+        final JSONObject json = new JSONObject();
+        json.put("name", "Cat");
+        json.put("email", "Cat@gmail.com");
+        json.put("phoneNumber", "816-555-5555");
+        json.put("reasonForContact", "Cat Bounty");
+        json.put("message", "I'm a cat who needs help!");
+        this.mockMvc.perform(post("/contact").contentType(MediaType.APPLICATION_JSON).content(json.toString())).andDo(print()).andExpect(status().isOk()).andExpect(content().string(containsString("Contact message saved")));
+        ContactSubmission contactSubmission = contactRepository.findByName("Cat");
+        assertThat(contactSubmission.getName()).isEqualTo("Cat");
+        assertThat(contactSubmission.getEmail()).isEqualTo("Cat@gmail.com");
+        assertThat(contactSubmission.getPhoneNumber()).isEqualTo("816-555-5555");
+        assertThat(contactSubmission.getReasonForContact()).isEqualTo("Cat Bounty");
+        assertThat(contactSubmission.getMessage()).isEqualTo("I'm a cat who needs help!");
+
+    }
+
+    @Test
     void endpointStatusIsBadRequest() throws Exception {
         final JSONObject json = new JSONObject();
         //name is required but not set
