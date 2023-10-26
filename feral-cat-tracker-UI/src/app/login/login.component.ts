@@ -24,7 +24,7 @@ loginProcess(){
 
 
   if(this.formGroup.valid){
-    this.authService.login(this.formGroup.value).subscribe(result => {})
+    this.authService.login(this.formGroup.value).subscribe(result => {alert(result.message)})
   }
 }
 
