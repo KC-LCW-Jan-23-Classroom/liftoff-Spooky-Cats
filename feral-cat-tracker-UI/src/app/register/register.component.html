@@ -1,43 +1,93 @@
 <div class="login-text-container">Register</div>
 <div class="form-container">
-    <form [formGroup]="registerGroup"(ngSubmit)="registerProcess()"> 
-        <div class="mb-3">
+    <form [formGroup]="registerGroup" (ngSubmit)="registerProcess()">
+
+        <div class="form-group">
             <label for="username" class="form-label">Username</label>
             <input type="username" class="form-control" id="username" aria-describedby="usernameField"
-                formControlName="username">
+                formControlName="username" [ngClass]="{ 'is-invalid': submitted && f['username'].errors }">
+            <div *ngIf="submitted && f['username'].errors" class="invalid-feedback">
+                <div *ngIf="f['username'].errors['required']">Username is required</div>
+                <div *ngIf="f['username'].errors['minlength']">
+                    Username must be at least 6 characters
+                </div>
+                <div *ngIf="f['username'].errors['maxlength']">
+                    Username must not exceed 20 characters
+                </div>
+            </div>
         </div>
-        <div class="mb-3">
+
+
+        <div class="form-group">
             <label for="firstName" class="form-label">First Name</label>
             <input type="firstName" class="form-control" id="firstName" aria-describedby="firstNameField"
-                formControlName="firstName">
+                formControlName="firstName" [ngClass]="{ 'is-invalid': submitted && f['firstName'].errors }">
+            <div *ngIf="submitted && f['firstName'].errors" class="invalid-feedback">
+                <div *ngIf="f['firstName'].errors['required']">First name is required</div>
+            </div>
         </div>
-        <div class="mb-3">
+
+
+        <div class="form-group">
             <label for="lastName" class="form-label">Last Name</label>
             <input type="lasttName" class="form-control" id="lastName" aria-describedby="lastNameField"
-                formControlName="lastName">
+                formControlName="lastName" [ngClass]="{ 'is-invalid': submitted && f['lastName'].errors }">
+            <div *ngIf="submitted && f['lastName'].errors" class="invalid-feedback">
+                <div *ngIf="f['lastName'].errors['required']">Last name is required</div>
+            </div>
         </div>
-        <div class="mb-3">
+
+        <div class="form-group">
             <label for="email" class="form-label">Email</label>
-            <input type="email" class="form-control" id="email" aria-describedby="emailField" formControlName="email">
+            <input type="email" class="form-control" id="email" aria-describedby="emailField" formControlName="email"
+                [ngClass]="{ 'is-invalid': submitted && f['email'].errors }">
+            <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+                <div *ngIf="f['email'].errors['required']">Email is required</div>
+                <div *ngIf="f['email'].errors['email']">Email is invalid</div>
+            </div>
         </div>
-        <div class="mb-3">
+
+        <div class="form-group">
             <label for="phoneNumber" class="form-label">Phone Number</label>
             <input type="phoneNumber" class="form-control" id="phoneNumber" aria-describedby="phoneNumberField"
                 formControlName="phoneNumber">
         </div>
-        <div class="mb-3">
+        <div class="form-group">
             <label for="address" class="form-label">Address</label>
             <input type="address" class="form-control" id="address" aria-describedby="addressField"
                 formControlName="address">
         </div>
-        <div class="mb-3">
+
+        <div class="form-group">
             <label for="password" class="form-label">Password</label>
-            <input type="password" class="form-control" id="password" formControlName="password">
+            <input type="password" class="form-control" id="password" formControlName="password"
+                [ngClass]="{ 'is-invalid': submitted && f['password'].errors }">
+            <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+                <div *ngIf="f['password'].errors['required']">Password is required</div>
+                <div *ngIf="f['password'].errors['minlength']">
+                    Password must be at least 6 characters
+                </div>
+                <div *ngIf="f['password'].errors['maxlength']">
+                    Password must not exceed 40 characters
+                </div>
+            </div>
         </div>
-        <div class="mb-3">
+
+        <div class="form-group">
             <label for="confirmPassword" class="form-label">Confirm Password</label>
-            <input type="password" class="form-control" id="confirmPassword" aria-describedby="confirmPasswordField" formControlName="confirmPassword">
-          </div>
+            <input type="password" class="form-control" id="confirmPassword" aria-describedby="confirmPasswordField"
+                formControlName="confirmPassword"
+                [ngClass]="{ 'is-invalid': submitted && f['confirmPassword'].errors }">
+            <div *ngIf="submitted && f['confirmPassword'].errors" class="invalid-feedback">
+                <div *ngIf="f['confirmPassword'].errors['required']">
+                    Confirm Password is required
+                </div>
+                <div *ngIf="f['confirmPassword'].errors['matching']">
+                    Confirm Password does not match
+                </div>
+            </div>
+        </div>
+        
         <div class="btn-container">
             <button type="submit" class="btn btn-primary">Create an Account</button>
         </div>
