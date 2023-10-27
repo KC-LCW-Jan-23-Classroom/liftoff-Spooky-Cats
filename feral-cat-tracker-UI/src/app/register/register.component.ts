@@ -67,17 +67,13 @@ export class RegisterComponent implements OnInit {
 
     this.authService.register(this.registerGroup.value).subscribe(
       (result) => {
-        console.log(result.message + ' All good');
         {
           alert(result.message);
         }
       },
       (error) => {
-        console.log('Error here ' + error.message);
-        alert('User already exists.');
+        alert(error.error.message);
       }
     );
   }
 }
-
-
