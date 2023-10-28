@@ -13,6 +13,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { AuthServiceService } from '../authservice/auth-service.service';
+import { Router } from '@angular/router';
 import Validation from './utils/validation';
 
 @Component({
@@ -23,7 +24,10 @@ import Validation from './utils/validation';
 export class RegisterComponent implements OnInit {
   registerGroup!: FormGroup;
   submitted = false;
-  constructor(private authService: AuthServiceService) {}
+  constructor(
+    private authService: AuthServiceService,
+    private router: Router
+  ) {}
   ngOnInit(): void {
     this.initForm();
   }
@@ -67,6 +71,10 @@ export class RegisterComponent implements OnInit {
 
     this.authService.register(this.registerGroup.value).subscribe(
       (result) => {
+        {
+          this.router.navigate(['/login']);
+        }
+
         {
           alert(result.message);
         }
