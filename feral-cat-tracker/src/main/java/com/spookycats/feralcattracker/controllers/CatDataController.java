@@ -24,7 +24,7 @@ public class CatDataController {
                                                       HttpServletRequest request)  {
         ResponseEntity response;
 
-        if(catDataFormDTO.getMicrochipNumber() == null)
+        if(catDataFormDTO.getMicrochipNumber() == null || catDataFormDTO.getMicrochipNumber().isBlank())
         {
             response = ResponseEntity.status(HttpStatus.BAD_REQUEST).body("All cats require a Microchip number.");
             return response;

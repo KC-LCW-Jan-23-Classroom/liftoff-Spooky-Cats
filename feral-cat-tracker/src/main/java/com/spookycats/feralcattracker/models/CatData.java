@@ -1,13 +1,15 @@
 package com.spookycats.feralcattracker.models;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import org.springframework.context.annotation.Primary;
+import org.springframework.data.annotation.Id;
 
 import java.util.Objects;
 
 @Entity
 public class CatData extends AbstractEntity {
 
+    @Id
     private String microchipNumber;
     private String name ;
     private String addressLastSeen;
