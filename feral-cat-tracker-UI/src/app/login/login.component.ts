@@ -69,23 +69,4 @@ export class LoginComponent implements OnInit {
   }
 }
 
-/* result=> {
-      if(result.getHeaders().statusCode === 201) {
-        console.log(result);  
-        alert("Hello, " + result.firstName + "!");
-      } else {
-        alert(result.bad)
-      }
-    }  chatgpt */
 
-/* result => {alert("Hello, " + result.firstName + "!")} */
-
-/* result=> {
-      if(result.created) {
-        console.log(result.created);  
-        alert("Hello, " + result.firstName + "!");
-      } else {
-        console.log(result.created)
-        alert(result.bad_request)
-      }
-    } */
