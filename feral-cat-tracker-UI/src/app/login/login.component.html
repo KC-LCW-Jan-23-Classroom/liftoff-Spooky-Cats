@@ -1,14 +1,24 @@
 <div class="login-text-container">Log In</div>
 <div class="form-container">
-    <form [formGroup]="formGroup"(ngSubmit)="loginProcess()">
-    <div class="mb-3">
+    <form [formGroup]="loginGroup"(ngSubmit)="loginProcess()">
+   
+      <div class="form-group">
       <label for="username" class="form-label">Username</label>
-      <input type="username" class="form-control" id="username" aria-describedby="usernameField" formControlName="username">
+      <input type="username" class="form-control" id="username" aria-describedby="usernameField" formControlName="username" [ngClass]="{ 'is-invalid': submitted && f['username'].errors }">
+      <div *ngIf="submitted && f['username'].errors" class="invalid-feedback">
+        <div *ngIf="f['username'].errors['required']">Username is required</div>
+      </div>
     </div>
-    <div class="mb-3">
+    
+    <div class="form-group">
       <label for="password" class="form-label">Password</label>
-      <input type="password" class="form-control" id="password" formControlName="password">
+      <input type="password" class="form-control" id="password" formControlName="password"
+      [ngClass]="{ 'is-invalid': submitted && f['password'].errors }">
+      <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+        <div *ngIf="f['password'].errors['required']">Password is required</div>
+        </div>
     </div>
+   
     <div class="btn-container">
     <button type="submit" class="btn btn-primary">Log In</button>
 </div>

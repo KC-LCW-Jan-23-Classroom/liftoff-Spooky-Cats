@@ -88,27 +88,28 @@ public class AuthenticationController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<User> processLoginForm(@RequestBody LoginFormDTO loginFormDTO, HttpServletRequest request) throws Exception {
+    public ResponseEntity<Map> processLoginForm(@RequestBody LoginFormDTO loginFormDTO, HttpServletRequest request) throws Exception {
 
         ResponseEntity response = null;
-
+        Map<String, String> responseBody = new HashMap<>();
         User theUser = userRepository.findByUsername(loginFormDTO.getUsername());
         String password = loginFormDTO.getPassword();
         if (theUser == null) {
-//            throw new Exception("Username does not exist");
+            responseBody.put("message", "Username does not exist");
             response = ResponseEntity
                     .status(HttpStatus.BAD_REQUEST)
-                    .body("Username does not exist");
+                    .body(responseBody);
         }else if (!theUser.isMatchingPassword(password)) {
-//            throw new Exception("Password does not match");
+            responseBody.put("message", "Password does not match");
             response = ResponseEntity
                     .status(HttpStatus.BAD_REQUEST)
-                    .body("Password does not match");
+                    .body(responseBody);
         } else {
             setUserInSession(request.getSession(), theUser);
+            responseBody.put("message", "User successfully logged in.");
             response = ResponseEntity
                     .status(HttpStatus.CREATED)
-                    .body(theUser);
+                    .body(responseBody);
         }
         return  response;
     }
