@@ -7,14 +7,14 @@ export class contactData{
   name: string;
   email: string;
   phoneNumber: string;
-  selectedSubject: string;
+  reasonForContact: string;
   message: string;
 
-  constructor(name:string, email: string, phoneNumber: string, selectedSubject: string, message: string){
+  constructor(name:string, email: string, phoneNumber: string, reasonForContact: string, message: string){
       this.name=name;
       this.email=email;
       this.phoneNumber=phoneNumber;
-      this.selectedSubject=selectedSubject;
+      this.reasonForContact=reasonForContact;
       this.message=message;
   }
 }
@@ -36,7 +36,7 @@ export class ContactComponent implements OnInit{
       name: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required]),
       phoneNumber: new FormControl('', [Validators.required]),
-      selectedSubject: new FormControl('', [Validators.required]),
+      reasonForContact: new FormControl('', [Validators.required]),
       message: new FormControl('', [Validators.required]),
     })
   }
