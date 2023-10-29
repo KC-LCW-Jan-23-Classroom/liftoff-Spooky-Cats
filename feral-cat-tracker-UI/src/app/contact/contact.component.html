@@ -9,34 +9,47 @@
         <h1>Contact Us!</h1>
         <p> Please reach out to us for any questions</p>
 
-        <form #contact [formGroup]="formGroup" (ngSubmit)="onClickSubmit()">
+        <form #contact [formGroup]="contactGroup" (ngSubmit)="onClickSubmit()">
             <div class="field">
                 <label class="label">Name: </label>
-                <input type="text" name="name" class="input" placeholder="Enter Name" formControlName="name">
+                <input type="text" name="name" class="input" placeholder="Enter Name" formControlName="name" [ngClass]="{ 'is-invalid': submitted && f['name'].errors }">
+                <div *ngIf="submitted && f['name'].errors" class="invalid-feedback">
+                    <div *ngIf="f['name'].errors['required']">Name is required</div>
+                </div>
             </div>
 
             <div class="field">
                 <label class="label">Email: </label>
-                <input type="email" name="email" class="input" placeholder="Enter Email" formControlName="email">
+                <input type="email" name="email" class="input" placeholder="Enter Email" formControlName="email" [ngClass]="{ 'is-invalid': submitted && f['email'].errors }">
+                <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+                    <div *ngIf="f['email'].errors['required']">Email is required</div>
+                    <div *ngIf="f['email'].errors['email']">Email must be a valid email address</div>
+                </div>
             </div>
 
             <div class="field">
                 <label class="label">Phone Number: </label>
-                <input type="text" name="phoneNumber" class="input" placeholder="Enter Phone Number" formControlName="phoneNumber">
+                <input type="text" mask='(000) 000-0000' name="phoneNumber" class="input" placeholder="Enter Phone Number" formControlName="phoneNumber">   
             </div>
 
             <div class="field">
                 <label class="label">Reason for Contacting Us: </label>
-                <select name="reasonForContact" formControlName="reasonForContact">
+                <select name="reasonForContact" formControlName="reasonForContact" [ngClass]="{ 'is-invalid': submitted && f['reasonForContact'].errors }">
                     <option [ngValue]="'Cat Bounty'">Cat Bounty</option>
                     <option [ngValue]="'Volunteering Opportunities'">Volunteering Opportunities</option>
                     <option [ngValue]="'Other/General Inquiries'">Other/General Inquiries</option>
                 </select>
+                <div *ngIf="submitted && f['reasonForContact'].errors" class="invalid-feedback">
+                    <div *ngIf="f['reasonForContact'].errors['required']">Reason for Contact is required</div>
+                </div>
             </div>
 
             <div class="field">
                 <label class="label">Message: </label>
-                <textarea name="message" class="textarea" formControlName="message"></textarea>
+                <textarea name="message" class="textarea" formControlName="message" [ngClass]="{ 'is-invalid': submitted && f['message'].errors }"></textarea>
+                <div *ngIf="submitted && f['message'].errors" class="invalid-feedback">
+                    <div *ngIf="f['message'].errors['required']">Message is required</div>
+                </div>
             </div>
 
             <button type="submit" class="button">
