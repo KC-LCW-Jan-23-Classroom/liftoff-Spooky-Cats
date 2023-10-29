@@ -11,6 +11,8 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from  '@angular/common/http';
 import { RegisterComponent } from './register/register.component';
+import { NgxMaskDirective, NgxMaskPipe, provideNgxMask} from 'ngx-mask';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,9 +29,12 @@ import { RegisterComponent } from './register/register.component';
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    NgxMaskDirective, 
+    NgxMaskPipe
+
   ],
-  providers: [],
+  providers: [provideNgxMask()],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
