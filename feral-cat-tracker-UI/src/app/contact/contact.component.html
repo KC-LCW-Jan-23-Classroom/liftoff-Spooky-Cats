@@ -9,25 +9,25 @@
         <h1>Contact Us!</h1>
         <p> Please reach out to us for any questions</p>
 
-        <form #contact="ngForm" (ngSubmit)="onClickSubmit(contact.value)">
+        <form #contact [formGroup]="formGroup" (ngSubmit)="onClickSubmit()">
             <div class="field">
                 <label class="label">Name: </label>
-                <input type="text" name="name" class="input" placeholder="Enter Name" ngModel>
+                <input type="text" name="name" class="input" placeholder="Enter Name" formControlName="name">
             </div>
 
             <div class="field">
                 <label class="label">Email: </label>
-                <input type="email" name="email" class="input" placeholder="Enter Email" ngModel>
+                <input type="email" name="email" class="input" placeholder="Enter Email" formControlName="email">
             </div>
 
             <div class="field">
                 <label class="label">Phone Number: </label>
-                <input type="text" name="phoneNumber" class="input" placeholder="Enter Phone Number" ngModel>
+                <input type="text" name="phoneNumber" class="input" placeholder="Enter Phone Number" formControlName="phoneNumber">
             </div>
 
             <div class="field">
                 <label class="label">Reason for Contacting Us: </label>
-                <select name="selectedSubject" ngModel >
+                <select name="reasonForContact" formControlName="reasonForContact">
                     <option [ngValue]="'Cat Bounty'">Cat Bounty</option>
                     <option [ngValue]="'Volunteering Opportunities'">Volunteering Opportunities</option>
                     <option [ngValue]="'Other/General Inquiries'">Other/General Inquiries</option>
@@ -36,7 +36,7 @@
 
             <div class="field">
                 <label class="label">Message: </label>
-                <textarea name="message" class="textarea" ngModel></textarea>
+                <textarea name="message" class="textarea" formControlName="message"></textarea>
             </div>
 
             <button type="submit" class="button">
