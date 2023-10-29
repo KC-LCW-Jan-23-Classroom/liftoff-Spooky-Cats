@@ -34,13 +34,13 @@
 
             <div class="field">
                 <label class="label">Reason for Contacting Us: </label>
-                <select name="selectedSubject" formControlName="selectedSubject" [ngClass]="{ 'is-invalid': submitted && f['selectedSubject'].errors }">
+                <select name="reasonForContact" formControlName="reasonForContact" [ngClass]="{ 'is-invalid': submitted && f['reasonForContact'].errors }">
                     <option [ngValue]="'Cat Bounty'">Cat Bounty</option>
                     <option [ngValue]="'Volunteering Opportunities'">Volunteering Opportunities</option>
                     <option [ngValue]="'Other/General Inquiries'">Other/General Inquiries</option>
                 </select>
-                <div *ngIf="submitted && f['selectedSubject'].errors" class="invalid-feedback">
-                    <div *ngIf="f['selectedSubject'].errors['required']">Reason for Contact is required</div>
+                <div *ngIf="submitted && f['reasonForContact'].errors" class="invalid-feedback">
+                    <div *ngIf="f['reasonForContact'].errors['required']">Reason for Contact is required</div>
                 </div>
             </div>
 
