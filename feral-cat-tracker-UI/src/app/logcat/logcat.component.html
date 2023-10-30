@@ -25,7 +25,7 @@
 
         <div class="form-group">
             <label for="addressLastSeen" class="form-label">Address Last Seen</label>
-            <input type="text" class="form-control" id="addressLastSeen" aria-describedby="addressLastSeen" matTooltip="Enter the closest address the cat was last seen." matTooltipPosition="left"
+            <input type="text" class="form-control" id="addressLastSeen" aria-describedby="addressLastSeen" matTooltip="Enter the closest address the cat was last seen. Format: Street, City, State Zip (i.e. 100 main street, Kansas City, MO 64105)" matTooltipPosition="left"
                 formControlName="addressLastSeen" [ngClass]="{ 'is-invalid': submitted && f['addressLastSeen'].errors }">
             <div *ngIf="submitted && f['addressLastSeen'].errors" class="invalid-feedback">
                 <div *ngIf="f['addressLastSeen'].errors['required']">Address last seen is required.</div>
@@ -151,3 +151,7 @@
 
     </form>
 </div>
+
+<br>
+<br>
+<br>
