@@ -12,6 +12,9 @@ import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from  '@angular/common/http';
 import { RegisterComponent } from './register/register.component';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask} from 'ngx-mask';
+import { LogcatComponent } from './logcat/logcat.component';
+import { MatButtonModule } from '@angular/material/button';  
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,8 @@ import { NgxMaskDirective, NgxMaskPipe, provideNgxMask} from 'ngx-mask';
     LoginComponent,
     ContactComponent,
     HomeComponent,
-    RegisterComponent
+    RegisterComponent,
+    LogcatComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +35,9 @@ import { NgxMaskDirective, NgxMaskPipe, provideNgxMask} from 'ngx-mask';
     HttpClientModule,
     FormsModule,
     NgxMaskDirective, 
-    NgxMaskPipe
+    NgxMaskPipe,
+    MatButtonModule,
+    MatTooltipModule
 
   ],
   providers: [provideNgxMask()],

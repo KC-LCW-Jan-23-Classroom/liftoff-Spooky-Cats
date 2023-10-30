@@ -1,0 +1,153 @@
+<div class="title">Log a Cat</div>
+<div class="form-container">
+    <form [formGroup]="catForm" (ngSubmit)="logCat()">
+        Use the form below to log a captured cat. Please include any updated medical history.
+        <br>
+        <br>
+
+        <div class="form-group">
+            <label for="microchipNumber" class="form-label">Microchip Number</label>
+            <input type="text" class="form-control" id="microchipNumber" aria-describedby="microchipNumber"
+                formControlName="microchipNumber" [ngClass]="{ 'is-invalid': submitted && f['microchipNumber'].errors }">
+            <div *ngIf="submitted && f['microchipNumber'].errors" class="invalid-feedback">
+                <div *ngIf="f['microchipNumber'].errors['required']">Microchip is required.</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="name" aria-describedby="name" matTooltip="Enter the cat's name, what it's called or responds to." matTooltipPosition="left"
+                formControlName="name" [ngClass]="{ 'is-invalid': submitted && f['name'].errors }">
+            <div *ngIf="submitted && f['name'].errors" class="invalid-feedback">
+                <div *ngIf="f['name'].errors['required']">Cat Name is required.</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="addressLastSeen" class="form-label">Address Last Seen</label>
+            <input type="text" class="form-control" id="addressLastSeen" aria-describedby="addressLastSeen" matTooltip="Enter the closest address the cat was last seen." matTooltipPosition="left"
+                formControlName="addressLastSeen" [ngClass]="{ 'is-invalid': submitted && f['addressLastSeen'].errors }">
+            <div *ngIf="submitted && f['addressLastSeen'].errors" class="invalid-feedback">
+                <div *ngIf="f['addressLastSeen'].errors['required']">Address last seen is required.</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="sex" class="form-label">Sex</label>
+            <input type="text" class="form-control" id="sex" aria-describedby="sex"
+                formControlName="sex" [ngClass]="{ 'is-invalid': submitted && f['sex'].errors }">
+            <div *ngIf="submitted && f['sex'].errors" class="invalid-feedback">
+                <div *ngIf="f['sex'].errors['required']">Sex is required.</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="breed" class="form-label">Breed</label>
+            <input type="text" class="form-control" id="breed" aria-describedby="breed" matTooltip="Enter breed or mixes such as Siamese, shorthair, ragdoll, fold, etc." matTooltipPosition="left"
+                formControlName="breed" [ngClass]="{ 'is-invalid': submitted && f['breed'].errors }">
+            <div *ngIf="submitted && f['breed'].errors" class="invalid-feedback">
+                <div *ngIf="f['breed'].errors['required']">Breed is required.</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="color" class="form-label">Color</label>
+            <input type="text" class="form-control" id="color" aria-describedby="color" matTooltip="Enter color of fur such as tortie, grey, calico, etc." matTooltipPosition="left"
+                formControlName="color" [ngClass]="{ 'is-invalid': submitted && f['color'].errors }">
+            <div *ngIf="submitted && f['color'].errors" class="invalid-feedback">
+                <div *ngIf="f['color'].errors['required']">Color is required.</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="furType" class="form-label">Fur Type</label>
+            <select type="furType" class="form-control" id="furType" aria-describedby="furType" matTooltip="Describe the length and type of fur the cat has." matTooltipPosition="left"
+                formControlName="furType" [ngClass]="{ 'is-invalid': submitted && f['furType'].errors }">
+                <option [ngValue]="'Long Hair'">Long Hair</option>
+                <option [ngValue]="'Short Hair'">Short Hair</option>
+                <option [ngValue]="'Bald'">Bald</option>
+            </select>
+            <div *ngIf="submitted && f['furType'].errors" class="invalid-feedback">
+                <div *ngIf="f['furType'].errors['required']">Fur Type is required.</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="weight" class="form-label">Weight (Lbs)</label>
+            <input type="number" min="0" class="form-control" id="weight" aria-describedby="weight" matTooltip="Estimated or current weight of the cat" matTooltipPosition="left"
+                formControlName="weight">
+        </div>
+
+            <div class="form-group">
+            <label for="estimatedAge" class="form-label">Estimated Age (Years)</label>
+            <input type="number" min="0" class="form-control" id="weight" aria-describedby="estimatedAge" matTooltip="Enter the estimated age of the cat in years." matTooltipPosition="left"
+                formControlName="estimatedAge">
+        </div>
+
+        <div class="form-group">
+            <label for="alteredStatus" class="form-label">Altered Status</label>
+            <select type="alteredStatus" class="form-control" id="alteredStatus" aria-describedby="estimatedAge" matTooltip="Select if the cat is spayed or intact." matTooltipPosition="left"
+                formControlName="alteredStatus">
+                <option [ngValue]="'Intact'">Intact</option>
+                <option [ngValue]="'Spayed / Neutered'">Spayed / Neutered</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="rabiesVaccineDate" class="form-label">Rabies Vaccine Date</label>
+            <input type="date" class="form-control" id="rabiesVaccineDate" aria-describedby="rabiesVaccineDate" matTooltip="Enter most recent Rabies vaccine date." matTooltipPosition="left"
+                formControlName="rabiesVaccineDate">
+        </div>
+
+        <div class="form-group">
+            <label for="distemperVaccineDate" class="form-label">Distemper Vaccine Date</label>
+            <input type="date" class="form-control" id="distemperVaccineDate" aria-describedby="distemperVaccineDate" matTooltip="Enter most recent Distemper vaccine date." matTooltipPosition="left"
+                formControlName="distemperVaccineDate">
+        </div>
+
+        <div class="form-group">
+            <label for="fhvVaccineDate" class="form-label">FHV Vaccine Date</label>
+            <input type="date" class="form-control" id="fhvVaccineDate" aria-describedby="fhvVaccineDate" matTooltip="Enter most recent FHV vaccine date." matTooltipPosition="left"
+                formControlName="fhvVaccineDate">
+        </div>
+
+        <div class="form-group">
+            <label for="fivVaccineDate" class="form-label">FIV Vaccine Date</label>
+            <input type="date" class="form-control" id="fivVaccineDate" aria-describedby="fivVaccineDate" matTooltip="Enter most recent FIV vaccine date." matTooltipPosition="left"
+                formControlName="fivVaccineDate">
+        </div>
+
+        <div class="form-group">
+            <label for="felvVaccineDate" class="form-label">FELV Vaccine Date</label>
+            <input type="date" class="form-control" id="felvVaccineDate" aria-describedby="felvVaccineDate" matTooltip="Enter most recent FELV vaccine date." matTooltipPosition="left"
+                formControlName="felvVaccineDate">
+        </div>
+
+        <div class="form-group">
+            <label for="bordetellaVaccineDate" class="form-label">Bordetella Vaccine Date</label>
+            <input type="date" class="form-control" id="bordetellaVaccineDate" aria-describedby="bordetellaVaccineDate" matTooltip="Enter most recent Bordetella vaccine date." matTooltipPosition="left"
+                formControlName="bordetellaVaccineDate">
+        </div>
+    
+        <div class="form-group">
+            <label for="dateCaptured" class="form-label">Date Captured</label>
+            <input type="date" class="form-control" id="dateCaptured" aria-describedby="dateCaptured" matTooltip="Enter date captured." matTooltipPosition="left"
+                formControlName="dateCaptured">
+        </div>
+
+        <div class="form-group">
+            <label for="notes" class="form-label">Notes</label>
+            <textarea type="text" class="form-control" id="notes" aria-describedby="notes" formControlName="notes" rows="4" cols="50">
+                Add notes about the cat here.
+            </textarea>
+        </div>
+
+<!--TODO: Upload Images, Last Modified User -->
+
+
+        <div class="btn-container">
+            <button type="submit" class="btn btn-primary">Log Cat</button>
+        </div>
+
+    </form>
+</div>
