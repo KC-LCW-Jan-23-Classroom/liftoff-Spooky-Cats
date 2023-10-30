@@ -3,6 +3,7 @@ import { ContactserviceService } from '../contactservice/contactservice.service'
 import { FormGroup, FormControl, Validators, AbstractControl, FormBuilder,  FormsModule,
   ReactiveFormsModule } from '@angular/forms';
 import { HttpClient, HttpErrorResponse, HttpStatusCode } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 
 export class contactData{
@@ -29,7 +30,10 @@ export class contactData{
 export class ContactComponent implements OnInit{
 
   formGroup!: FormGroup;
-  constructor(private contactService:ContactserviceService){}
+  constructor(
+    private contactService:ContactserviceService,
+    private router: Router){}
+
   ngOnInit():void{
     this.initForm();
   }
@@ -70,10 +74,10 @@ onClickSubmit(){
   if(this.contactGroup.valid){
 
     //check validation
-    this.contactService.contact(this.contactGroup.value).subscribe(result => alert(result))
-  }
+    this.contactService.contact(this.contactGroup.value).subscribe(result => {
+      {this.router.navigate(['/'])}
+      {alert(result)}
+  })
 }
-  
-  
-
+}
 }

@@ -42,7 +42,7 @@ body {
   
   input,
 textarea,
-.selectedSubject.value {
+.reasonForContact.value {
   padding: 0.4rem;
   width: 100%;
   border: 1px solid;
