@@ -29,6 +29,8 @@ export class contactData{
 })
 export class ContactComponent implements OnInit{
 
+  showSuccessMessage = false;
+
   formGroup!: FormGroup;
   constructor(
     private contactService:ContactserviceService,
@@ -44,8 +46,8 @@ export class ContactComponent implements OnInit{
   initForm(){
     this.contactGroup = new FormGroup({
       name: new FormControl('', [Validators.required]),
-      email: new FormControl('', [Validators.required, Validators.email],),
-      phoneNumber: new FormControl('', [Validators.required]),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      phoneNumber: new FormControl('', []),
       reasonForContact: new FormControl('', [Validators.required]),
       message: new FormControl('', [Validators.required]),
     });
@@ -57,6 +59,7 @@ export class ContactComponent implements OnInit{
 
 
 onClickSubmit(){
+  this.showSuccessMessage = false;
   this.submitted= true;
 
   if(this.contactGroup.invalid) {
@@ -65,11 +68,15 @@ onClickSubmit(){
   }
 
   if(this.contactGroup.valid){
+    this.showSuccessMessage = true;
 
     //check validation
     this.contactService.contact(this.contactGroup.value).subscribe(result => {
-      setTimeout(() => {this.router.navigate(['/'])} , 7000);
-      {alert(result)}
+      setTimeout(() => {
+        
+        this.router.navigate(['/']);
+      } , 5000);
+      
   })
 }
 }
