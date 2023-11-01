@@ -4,6 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import {ContactComponent} from './contact/contact.component';
 import { RegisterComponent } from './register/register.component';
+import { LogcatComponent } from './logcat/logcat.component';
 
 const routes: Routes = [
   {
@@ -26,7 +27,12 @@ const routes: Routes = [
   {
     path: 'register',
     component:RegisterComponent
+  },
+  {
+    path: 'log',
+    component:LogcatComponent
   }
+  
   
 
 ];
