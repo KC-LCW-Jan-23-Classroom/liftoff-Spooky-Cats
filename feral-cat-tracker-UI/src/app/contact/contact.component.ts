@@ -30,6 +30,7 @@ export class contactData{
 export class ContactComponent implements OnInit{
 
   showSuccessMessage = false;
+  showSubmitButton= true;
 
   formGroup!: FormGroup;
   constructor(
@@ -60,6 +61,7 @@ export class ContactComponent implements OnInit{
 
 onClickSubmit(){
   this.showSuccessMessage = false;
+  this.showSubmitButton = true;
   this.submitted= true;
 
   if(this.contactGroup.invalid) {
@@ -69,6 +71,7 @@ onClickSubmit(){
 
   if(this.contactGroup.valid){
     this.showSuccessMessage = true;
+    this.showSubmitButton = false;
 
     //check validation
     this.contactService.contact(this.contactGroup.value).subscribe(result => {
