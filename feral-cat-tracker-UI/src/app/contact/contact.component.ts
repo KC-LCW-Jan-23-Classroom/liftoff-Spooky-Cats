@@ -56,13 +56,6 @@ export class ContactComponent implements OnInit{
   }
 
 
-
-
-//   onClickSubmit(data: contactData) {
-//     // HTMLOutputElement.post(localhost:8080/contact,data);
-//     alert("To do: ACTUALLY submit" + JSON.stringify(data));
-//  }
-
 onClickSubmit(){
   this.submitted= true;
 
@@ -75,7 +68,7 @@ onClickSubmit(){
 
     //check validation
     this.contactService.contact(this.contactGroup.value).subscribe(result => {
-      {this.router.navigate(['/'])}
+      setTimeout(() => {this.router.navigate(['/'])} , 7000);
       {alert(result)}
   })
 }
