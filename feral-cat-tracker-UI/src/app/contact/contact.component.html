@@ -52,11 +52,13 @@
                 </div>
             </div>
 
-            <button type="submit" class="button">
-                Send
-            </button>
+            <div class="btn-container">
+                <button type="submit" class="btn btn-primary">
+                    Submit
+                </button>
+            </div>
 
-            <div *ngIf="showSuccessMessage" class="successMessage">Submit Successful! Thank you For Contacting Us!</div>
+            <div *ngIf="showSuccessMessage" class="successMessage">Success! Thank you For Contacting Us!</div>
         </form>
 
     </body>
