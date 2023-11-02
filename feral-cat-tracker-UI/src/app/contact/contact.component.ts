@@ -3,6 +3,7 @@ import { ContactserviceService } from '../contactservice/contactservice.service'
 import { FormGroup, FormControl, Validators, AbstractControl, FormBuilder,  FormsModule,
   ReactiveFormsModule } from '@angular/forms';
 import { HttpClient, HttpErrorResponse, HttpStatusCode } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 
 export class contactData{
@@ -28,8 +29,14 @@ export class contactData{
 })
 export class ContactComponent implements OnInit{
 
+  showSuccessMessage = false;
+  showSubmitButton= true;
+
   formGroup!: FormGroup;
-  constructor(private contactService:ContactserviceService){}
+  constructor(
+    private contactService:ContactserviceService,
+    private router: Router){}
+
   ngOnInit():void{
     this.initForm();
   }
@@ -40,8 +47,8 @@ export class ContactComponent implements OnInit{
   initForm(){
     this.contactGroup = new FormGroup({
       name: new FormControl('', [Validators.required]),
-      email: new FormControl('', [Validators.required, Validators.email],),
-      phoneNumber: new FormControl('', [Validators.required]),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      phoneNumber: new FormControl('', []),
       reasonForContact: new FormControl('', [Validators.required]),
       message: new FormControl('', [Validators.required]),
     });
@@ -52,14 +59,9 @@ export class ContactComponent implements OnInit{
   }
 
 
-
-
-//   onClickSubmit(data: contactData) {
-//     // HTMLOutputElement.post(localhost:8080/contact,data);
-//     alert("To do: ACTUALLY submit" + JSON.stringify(data));
-//  }
-
 onClickSubmit(){
+  this.showSuccessMessage = false;
+  this.showSubmitButton = true;
   this.submitted= true;
 
   if(this.contactGroup.invalid) {
@@ -68,12 +70,17 @@ onClickSubmit(){
   }
 
   if(this.contactGroup.valid){
+    this.showSuccessMessage = true;
+    this.showSubmitButton = false;
 
     //check validation
-    this.contactService.contact(this.contactGroup.value).subscribe(result => alert(result))
-  }
+    this.contactService.contact(this.contactGroup.value).subscribe(result => {
+      setTimeout(() => {
+        
+        this.router.navigate(['/']);
+      } , 5000);
+      
+  })
 }
-  
-  
-
+}
 }
