@@ -48,6 +48,10 @@ public class CatDataService {
 
     }
 
+    public Iterable<CatData> findAllCats(){
+        return catRepository.findAll();
+    }
+
     public Boolean findExistingCat(CatDataFormDTO catDataFormDTO){
         Optional<CatData> cat = Optional.ofNullable(catRepository.findByMicrochipNumber(catDataFormDTO.getMicrochipNumber()));
         if(cat.isPresent()){
