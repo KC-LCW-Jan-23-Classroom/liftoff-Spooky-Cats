@@ -57,7 +57,7 @@
                     Submit
                 </button>
             </div>
-
+            <p  *ngIf="showSubmitErrorMessage" class="showSubmitErrorMessage">Unable to Submit. Please Try Again!</p>
             <div *ngIf="showSuccessMessage" class="successMessage">Success! Thank you For Contacting Us!</div>
         </form>
 

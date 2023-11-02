@@ -81,6 +81,10 @@ textarea,
 
 }
 
+.showSubmitErrorMessage{
+  color:red
+}
+
 /* .field{
     font-size: 100%;
 } */
