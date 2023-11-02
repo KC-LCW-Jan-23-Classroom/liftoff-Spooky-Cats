@@ -1,4 +1,5 @@
 export class Cat{
+    id: string;
     microchipNumber: string;
     name: string;
     addressLastSeen: string;
@@ -22,10 +23,11 @@ export class Cat{
     lastModifiedDate: string;
     createdDate: string;
   
-    constructor(microchipNumber:string, name: string, addressLastSeen: string, sex: string, breed: string,
+    constructor(id: string, microchipNumber:string, name: string, addressLastSeen: string, sex: string, breed: string,
       color:string, furType: string, weight: string, estimatedAge: string, alteredStatus: string, rabiesVaccineDate:string, 
       distemperVaccineDate: string, fhvVaccineDate: string, fivVaccineDate: string, felvVaccineDate: string,  bordetellaVaccineDate: string,
       dateCaptured:string, notes: string, image: string, lastModifiedUser: string, lastModifiedDate: string, createdDate: string){
+        this.id=id;
         this.microchipNumber=microchipNumber;
         this.name=name;
         this.sex=sex;

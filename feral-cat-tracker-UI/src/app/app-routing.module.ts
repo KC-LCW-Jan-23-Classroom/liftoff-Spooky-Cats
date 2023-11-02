@@ -5,6 +5,7 @@ import { LoginComponent } from './login/login.component';
 import {ContactComponent} from './contact/contact.component';
 import { RegisterComponent } from './register/register.component';
 import { LogcatComponent } from './logcat/logcat.component';
+import { FindcatComponent } from './findcat/findcat.component';
 
 const routes: Routes = [
   {
@@ -31,6 +32,10 @@ const routes: Routes = [
   {
     path: 'log',
     component:LogcatComponent
+  },
+  {
+    path: 'find',
+    component:FindcatComponent
   }
   
   
