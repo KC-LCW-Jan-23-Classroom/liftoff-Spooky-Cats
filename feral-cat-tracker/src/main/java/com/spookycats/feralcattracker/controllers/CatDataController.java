@@ -38,9 +38,9 @@ public class CatDataController {
             return response;
         }
 
-        Boolean exisitingCat = catDataService.findExistingCat(catDataFormDTO);
+        Boolean existingCat = catDataService.findExistingCat(catDataFormDTO);
 
-        if(exisitingCat == true){
+        if(existingCat == true){
             catDataService.updateCat(catDataFormDTO);
             response = ResponseEntity.status(HttpStatus.OK).body("[TODO]Existing Cat has been updated.");
         } else {
