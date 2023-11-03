@@ -15,6 +15,7 @@ import { NgxMaskDirective, NgxMaskPipe, provideNgxMask} from 'ngx-mask';
 import { LogcatComponent } from './logcat/logcat.component';
 import { MatButtonModule } from '@angular/material/button';  
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { FindcatComponent } from './findcat/findcat.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     ContactComponent,
     HomeComponent,
     RegisterComponent,
-    LogcatComponent
+    LogcatComponent,
+    FindcatComponent
   ],
   imports: [
     BrowserModule,

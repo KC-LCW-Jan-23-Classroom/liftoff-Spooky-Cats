@@ -37,8 +37,11 @@
 
         <div class="form-group">
             <label for="sex" class="form-label">Sex</label>
-            <input type="text" class="form-control" id="sex" aria-describedby="sex"
+            <select type="text" class="form-control" id="sex" aria-describedby="sex"
                 formControlName="sex" [ngClass]="{ 'is-invalid': submitted && f['sex'].errors }">
+                <option [ngValue]="'Female'">Female</option>
+                <option [ngValue]="'Male'">Male</option>
+            </select>
             <div *ngIf="submitted && f['sex'].errors" class="invalid-feedback">
                 <div *ngIf="f['sex'].errors['required']">Sex is required.</div>
             </div>

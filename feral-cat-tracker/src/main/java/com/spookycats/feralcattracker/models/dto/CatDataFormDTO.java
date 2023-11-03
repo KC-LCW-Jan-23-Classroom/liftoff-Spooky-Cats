@@ -2,7 +2,7 @@ package com.spookycats.feralcattracker.models.dto;
 
 public class CatDataFormDTO {
     private String microchipNumber;
-    private String name ;
+    private String name;
     private String addressLastSeen;
     private String sex;
     private String breed;
