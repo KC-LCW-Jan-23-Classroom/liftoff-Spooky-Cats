@@ -15,6 +15,9 @@ import { LogcatserviceService } from '../logcatservice/logcatservice.service';
 })
 export class LogcatComponent implements OnInit{
   catForm!: FormGroup;
+  showSuccessMessage = false;
+  showSubmitButton= true;
+  showSubmitErrorMessage = false;
   submitted = false;
   constructor(
     private router: Router,
@@ -56,6 +59,10 @@ export class LogcatComponent implements OnInit{
   }
 
   logCat() {
+    this.showSuccessMessage = false;
+    this.showSubmitButton = true;
+    this.submitted= true;
+    this.showSubmitErrorMessage = false;
     console.log("log cat");
     console.log(this.catForm.value);
     this.submitted= true;
@@ -65,8 +72,26 @@ export class LogcatComponent implements OnInit{
     }
   
     if(this.catForm.valid){
-      this.catservice.log(this.catForm.value).subscribe(result => alert(result));
-      this.router.navigate(['/log']); //TODO: navigate to page for created cat.
+    this.catservice.log(this.catForm.value).subscribe(
+
+      (result) => {
+        {          
+          this.showSuccessMessage = true;
+          this.showSubmitButton = false;
+          this.showSubmitErrorMessage = false;
+      setTimeout(() => {
+             this.router.navigate(['/find']); //TODO: navigate to page for created cat.
+      } , 5000);
+    }
+      
+      },
+      (error) => {
+        this.showSuccessMessage = false;
+        this.showSubmitButton = true; 
+        this.showSubmitErrorMessage= true
+        
+      }
+    );
     }
 
   }

@@ -17,6 +17,7 @@
   </div>
 <br>
 <br>
+<p  *ngIf="showLoadErrorMessage" class="showLoadErrorMessage">Unable to load cat data.</p>
 <div class="card-deck" *ngFor = "let cat of cats">
     <div class="card">
       <img class="card-img-top" src="/assets/FeralCatTrackLogo.png" alt="Card image cap">

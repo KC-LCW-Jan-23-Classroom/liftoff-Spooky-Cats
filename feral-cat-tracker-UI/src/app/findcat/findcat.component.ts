@@ -7,6 +7,7 @@ import { FindcatserviceService } from '../findcatservice/findcatservice.service'
   styleUrls: ['./findcat.component.css']
 })
 export class FindcatComponent implements OnInit{
+  showLoadErrorMessage = false;
 
 
   cats: Cat[] = [];
@@ -17,12 +18,14 @@ export class FindcatComponent implements OnInit{
   
 ngOnInit(){
   this.findcatService.find().subscribe(data => {
+    this.showLoadErrorMessage = false;
     this.cats = data;
-
     console.log(data);
     console.log(this.cats);
 
     
+  }, (error) => {
+    this.showLoadErrorMessage = true;
   })
 
 
