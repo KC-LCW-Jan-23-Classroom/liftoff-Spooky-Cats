@@ -8,7 +8,14 @@ import { Cat } from '../models/cat';
 })
 export class FindcatserviceService {
 
+  private apiUrl = 'http://localhost:8080/results';
+
   constructor(private http: HttpClient) {}
+
+  search(query: string): Observable<any> {
+    console.log('Searched cat(s)')
+    return this.http.get<Cat[]>(`${this.apiUrl}?query=${query}`);
+  }
 
   find(): Observable<Cat[]> {
     console.log('Find All Cats');
