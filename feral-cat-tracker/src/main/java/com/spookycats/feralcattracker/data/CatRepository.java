@@ -17,4 +17,6 @@ public interface CatRepository extends CrudRepository<CatData, Integer> {
     List<CatData> searchCats(String query);
     CatData findByMicrochipNumber(String microchipNumber);
 
+    // create separate methods for each search
+
 }

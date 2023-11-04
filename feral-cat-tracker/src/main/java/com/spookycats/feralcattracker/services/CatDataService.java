@@ -62,4 +62,5 @@ public class CatDataService {
         }
     }
 
-        }
+    // Create methods to call each repository method
+}

@@ -30,6 +30,8 @@ public class CatDataController {
 
     @GetMapping("/results")
     public ResponseEntity<List<CatData>> findByQuery(@RequestParam("query") String query){
+        //If (queryType) call correct service method
+
         return ResponseEntity.ok(catRepository.searchCats(query));
     }
 
