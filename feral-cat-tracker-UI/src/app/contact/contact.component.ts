@@ -31,6 +31,7 @@ export class ContactComponent implements OnInit{
 
   showSuccessMessage = false;
   showSubmitButton= true;
+  showSubmitErrorMessage = false;
 
   formGroup!: FormGroup;
   constructor(
@@ -63,6 +64,7 @@ onClickSubmit(){
   this.showSuccessMessage = false;
   this.showSubmitButton = true;
   this.submitted= true;
+  this.showSubmitErrorMessage = false;
 
   if(this.contactGroup.invalid) {
     // this.contactService;
@@ -70,17 +72,38 @@ onClickSubmit(){
   }
 
   if(this.contactGroup.valid){
-    this.showSuccessMessage = true;
-    this.showSubmitButton = false;
+
 
     //check validation
-    this.contactService.contact(this.contactGroup.value).subscribe(result => {
+    this.contactService.contact(this.contactGroup.value).subscribe(
+   
+   
+   
+      (result) => {
+        {          
+          this.showSuccessMessage = true;
+          this.showSubmitButton = false;
+          this.showSubmitErrorMessage = false;
       setTimeout(() => {
-        
-        this.router.navigate(['/']);
+             this.router.navigate(['/']);
       } , 5000);
+    }
       
-  })
+      },
+      (error) => {
+        this.showSuccessMessage = false;
+        this.showSubmitButton = true; 
+        this.showSubmitErrorMessage= true
+        
+      }
+    );
+  }
 }
 }
-}
+
+
+   
+   
+   
+   
+   
