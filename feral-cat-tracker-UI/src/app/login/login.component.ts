@@ -62,7 +62,11 @@ export class LoginComponent implements OnInit {
           }
         },
         (error) => {
-          alert(error.error.message);
+          if (!error.error.message) {
+            alert('Something went wrong. Please try again.');
+          } else {
+            alert(error.error.message);
+          }
         }
       );
     }
