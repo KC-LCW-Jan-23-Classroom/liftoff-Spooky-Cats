@@ -12,15 +12,14 @@ import java.util.List;
 public interface CatRepository extends CrudRepository<CatData, Integer> {
 
     @Query (value="SELECT * FROM cat_data  WHERE " +
-            "cat_data.microchip_number LIKE CONCAT('%',:query, '%') = :microchip", nativeQuery = true)
+            "cat_data.microchip_number LIKE CONCAT('%',:query, '%')", nativeQuery = true)
     List<CatData> searchCatsByMicrochip(String query);
 
     @Query (value="SELECT * FROM cat_data  WHERE " +
-            "cat_data.address_last_seen LIKE CONCAT('%', :query, '%') = :location", nativeQuery = true)
+            "cat_data.address_last_seen LIKE CONCAT('%', :query, '%')", nativeQuery = true)
     List<CatData>searchByLocation(String query);
 
-    @Query (value ="SELECT * FROM cat_data  WHERE " +
-            "cat_data LIKE CONCAT('%', :query, '%')", nativeQuery = true)
+    @Query (value ="SELECT * FROM cat_data", nativeQuery = true)
     List<CatData>returnAllCats(String query);
 
     CatData findByMicrochipNumber(String microchipNumber);

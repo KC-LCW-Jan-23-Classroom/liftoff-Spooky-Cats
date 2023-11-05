@@ -39,9 +39,14 @@ public class CatDataController {
             return ResponseEntity.ok(catRepository.searchByLocation(query));
         }
 
-        // Default case, return all cats
+        System.out.println("Received query: " + query);
+        System.out.println("Received queryType: " + queryType);
         return ResponseEntity.ok(catRepository.returnAllCats(query));
+
     }
+
+
+
 
     @PostMapping("/log")
     public ResponseEntity<String> processCatDataForm(@RequestBody CatDataFormDTO catDataFormDTO,
