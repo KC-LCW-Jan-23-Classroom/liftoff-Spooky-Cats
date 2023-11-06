@@ -10,6 +10,20 @@
 <div class="form-check form-check-inline">
   <input class="form-check-input" type="radio" name="inlineRadioOptions" id="microchip" value="microchip" disabled>
   <label class="form-check-label" for="inlineRadio1">Microchip Number</label>
+<app-search-form></app-search-form>
+<br>
+<br>
+<div class="card-deck" *ngFor = "let cat of cats">
+  <div class="card">
+    <img class="card-img-top" src="/assets/FeralCatTrackLogo.png" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">Name: {{cat.name}}</h5>
+      <p class="card-text">Microchip Number: {{cat.microchipNumber}}</p>
+      <p class="card-text">Color: {{cat.color}}</p>
+      <p class="card-text"><small class="text-muted">Last Modified Date: {{cat.lastModifiedDate}}</small></p>
+    </div>
+  </div>
+  <br>
 </div>
 <div class="form-check form-check-inline">
   <input class="form-check-input" type="radio" name="inlineRadioOptions" id="color" value="color" disabled>
@@ -24,5 +38,7 @@
   </app-cat-card-ui>
 </div>
 <br>
+<!-- <router-outlet></router-outlet> -->
+
 <br>
 <br>

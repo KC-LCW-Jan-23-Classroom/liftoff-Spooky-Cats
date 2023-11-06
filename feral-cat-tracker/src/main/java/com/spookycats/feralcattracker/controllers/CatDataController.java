@@ -1,5 +1,6 @@
 package com.spookycats.feralcattracker.controllers;
 
+import com.spookycats.feralcattracker.data.CatRepository;
 import com.spookycats.feralcattracker.models.CatData;
 import com.spookycats.feralcattracker.models.dto.CatDataFormDTO;
 import com.spookycats.feralcattracker.services.CatDataService;
@@ -7,10 +8,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -18,6 +17,8 @@ public class CatDataController {
 
     @Autowired
     CatDataService catDataService;
+    @Autowired
+    private CatRepository catRepository;
 
 
     //TODO: GET MAPPING, RETURN ALL CATS. FILTER CATS BY SEARCHING
@@ -25,6 +26,13 @@ public class CatDataController {
     @GetMapping("/find")
     public Iterable<CatData> getCats(){
         return catDataService.findAllCats();
+    }
+
+    @GetMapping("/results")
+    public ResponseEntity<List<CatData>> findByQuery(@RequestParam("query") String query){
+        //If (queryType) call correct service method
+
+        return ResponseEntity.ok(catRepository.searchCats(query));
     }
 
     @PostMapping("/log")
