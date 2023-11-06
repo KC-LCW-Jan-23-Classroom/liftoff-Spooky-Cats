@@ -39,10 +39,14 @@ public class CatDataController {
             return ResponseEntity.ok(catRepository.searchByLocation(query));
         }
 
+        if ("color".equals(queryType)) {
+            return ResponseEntity.ok(catRepository.searchByColor(query));
+        }
+
         System.out.println("Received query: " + query);
         System.out.println("Received queryType: " + queryType);
-        return ResponseEntity.ok(catRepository.returnAllCats(query));
 
+        return ResponseEntity.ok(catRepository.searchByAll(query));
     }
 
 
