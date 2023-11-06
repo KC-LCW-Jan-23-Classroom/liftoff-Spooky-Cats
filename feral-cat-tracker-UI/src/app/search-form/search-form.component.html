@@ -1,6 +1,6 @@
 <div class="input-group">
     <form #catSearchForm="ngForm" class="cat-search-form" (ngSubmit)="searchCats(catSearchForm.value)">
-        <input type="text" name="searchTerm" id="search-term" placeholder="Search all fields" [(ngModel)]="searchTerm" #filter>
+        <input type="text" name="searchTerm" id="search-term" placeholder="Search all cats" [(ngModel)]="searchTerm" #filter>
         <span class="input-group-btn">
             <button class="btn btn-primary" type="submit">Search</button>
         </span>
