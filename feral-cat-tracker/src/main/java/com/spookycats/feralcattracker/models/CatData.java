@@ -1,6 +1,8 @@
 package com.spookycats.feralcattracker.models;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.OneToOne;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.annotation.Id;
 
@@ -33,10 +35,13 @@ public class CatData extends AbstractEntity {
     private String lastModifiedDate;
     private String createdDate;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    private Files file;
+
     public CatData() {
     }
 
-    public CatData(String microchipNumber, String name, String addressLastSeen, String sex, String breed, String color, String furType, String weight, String estimatedAge, String alteredStatus, String rabiesVaccineDate, String distemperVaccineDate, String fhvVaccineDate, String fivVaccineDate, String felvVaccineDate, String bordetellaVaccineDate, String dateCaptured, String notes, String image, String lastModifiedUser, String lastModifiedDate, String createdDate) {
+    public CatData(String microchipNumber, String name, String addressLastSeen, String sex, String breed, String color, String furType, String weight, String estimatedAge, String alteredStatus, String rabiesVaccineDate, String distemperVaccineDate, String fhvVaccineDate, String fivVaccineDate, String felvVaccineDate, String bordetellaVaccineDate, String dateCaptured, String notes, String image, String lastModifiedUser, String lastModifiedDate, String createdDate, Files file) {
         this.microchipNumber = microchipNumber;
         this.name = name;
         this.addressLastSeen = addressLastSeen;
@@ -59,6 +64,7 @@ public class CatData extends AbstractEntity {
         this.lastModifiedUser = lastModifiedUser;
         this.lastModifiedDate = lastModifiedDate;
         this.createdDate = createdDate;
+        this.file = file;
     }
 
     public String getMicrochipNumber() {
@@ -235,6 +241,14 @@ public class CatData extends AbstractEntity {
 
     public void setCreatedDate(String createdDate) {
         this.createdDate = createdDate;
+    }
+
+    public Files getFile() {
+        return file;
+    }
+
+    public void setFile(Files file) {
+        this.file = file;
     }
 
     @Override
