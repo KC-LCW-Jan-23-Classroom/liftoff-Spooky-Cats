@@ -18,7 +18,7 @@ export class Cat{
     bordetellaVaccineDate: string;
     dateCaptured: string;
     notes: string;
-    image: string;
+    image: Blob;
     lastModifiedUser: string;
     lastModifiedDate: string;
     createdDate: string;
@@ -26,7 +26,7 @@ export class Cat{
     constructor(id: string, microchipNumber:string, name: string, addressLastSeen: string, sex: string, breed: string,
       color:string, furType: string, weight: string, estimatedAge: string, alteredStatus: string, rabiesVaccineDate:string, 
       distemperVaccineDate: string, fhvVaccineDate: string, fivVaccineDate: string, felvVaccineDate: string,  bordetellaVaccineDate: string,
-      dateCaptured:string, notes: string, image: string, lastModifiedUser: string, lastModifiedDate: string, createdDate: string){
+      dateCaptured:string, notes: string, image: Blob, lastModifiedUser: string, lastModifiedDate: string, createdDate: string){
         this.id=id;
         this.microchipNumber=microchipNumber;
         this.name=name;

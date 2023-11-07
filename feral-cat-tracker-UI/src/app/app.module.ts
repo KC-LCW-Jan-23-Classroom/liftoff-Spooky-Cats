@@ -16,6 +16,11 @@ import { LogcatComponent } from './logcat/logcat.component';
 import { MatButtonModule } from '@angular/material/button';  
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { FindcatComponent } from './findcat/findcat.component';
+import { CatCardUiComponent } from './cat-card-ui/cat-card-ui.component';
+import { SearchFormComponent } from './search-form/search-form.component';
+import { SearchResultsComponent } from './search-results/search-results.component';
+
+
 
 @NgModule({
   declarations: [
@@ -28,7 +33,11 @@ import { FindcatComponent } from './findcat/findcat.component';
     HomeComponent,
     RegisterComponent,
     LogcatComponent,
-    FindcatComponent
+    FindcatComponent,
+    CatCardUiComponent,
+    SearchFormComponent,
+    SearchResultsComponent,
+
   ],
   imports: [
     BrowserModule,

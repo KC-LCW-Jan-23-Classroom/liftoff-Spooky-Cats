@@ -1,35 +1,45 @@
 <br>
 <br>
 <div class="input-group">
-    <input type="text" class="form-control" placeholder="Filter" #filter disabled>
-    <span class="input-group-btn">
-      <button class="btn btn-primary" type="submit" disabled>Search</button>
-    </span>
-  </div>
+  <input type="text" class="form-control" placeholder="Filter" #filter disabled>
+  <span class="input-group-btn">
+    <button class="btn btn-primary" type="submit" disabled>Search</button>
+  </span>
+</div>
 <br>
 <div class="form-check form-check-inline">
-    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="microchip" value="microchip" disabled>
-    <label class="form-check-label" for="inlineRadio1">Microchip Number</label>
-  </div>
-  <div class="form-check form-check-inline">
-    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="color" value="color" disabled>
-    <label class="form-check-label" for="inlineRadio2">Color (disabled)</label>
-  </div>
+  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="microchip" value="microchip" disabled>
+  <label class="form-check-label" for="inlineRadio1">Microchip Number</label>
+<app-search-form></app-search-form>
 <br>
 <br>
 <p  *ngIf="showLoadErrorMessage" class="showLoadErrorMessage">Unable to load cat data.</p>
 <div class="card-deck" *ngFor = "let cat of cats">
-    <div class="card">
-      <img class="card-img-top" src="/assets/FeralCatTrackLogo.png" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">Name: {{cat.name}}</h5>
-        <p class="card-text">Microchip Number: {{cat.microchipNumber}}</p>
-        <p class="card-text">Color: {{cat.color}}</p>
-        <p class="card-text"><small class="text-muted">Last Modified Date: {{cat.lastModifiedDate}}</small></p>
-      </div>
+  <div class="card">
+    <img class="card-img-top" src="/assets/FeralCatTrackLogo.png" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">Name: {{cat.name}}</h5>
+      <p class="card-text">Microchip Number: {{cat.microchipNumber}}</p>
+      <p class="card-text">Color: {{cat.color}}</p>
+      <p class="card-text"><small class="text-muted">Last Modified Date: {{cat.lastModifiedDate}}</small></p>
     </div>
-    <br>
+  </div>
+  <br>
 </div>
+<div class="form-check form-check-inline">
+  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="color" value="color" disabled>
+  <label class="form-check-label" for="inlineRadio2">Color (disabled)</label>
+</div>
+<br>
+<br>
+
+<div class="row">
+  <app-cat-card-ui *ngFor="let cat of cats" [cat]="cat"
+    class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12">
+  </app-cat-card-ui>
+</div>
+<br>
+<!-- <router-outlet></router-outlet> -->
 
 <br>
 <br>
