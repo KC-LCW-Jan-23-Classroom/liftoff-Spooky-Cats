@@ -150,16 +150,16 @@
 
 
         <div class="form-group">
-            <label for="image" class="form-label">Notes</label>
-            <input type="file" name ="image" class="form-control" id="image" aria-describedby="image" formControlName="image" rows="4" cols="50" accept="image/png, image/jpeg"/>
+            <label for="image" class="form-label">Image</label>
+            <input type="file" name ="image" class="form-control" id="image" aria-describedby="image" formControlName="image" rows="4" cols="50" accept="image/png, image/jpeg" (change)="selectFile($event)"/>
         </div>
 
 
         <div class="btn-container">
             <button type="submit" class="btn btn-primary">Log Cat</button>
         </div>
-        <p  *ngIf="showSubmitErrorMessage" class="showSubmitErrorMessage">Unable to Submit. Please Try Again!</p>
-        <div *ngIf="showSuccessMessage" class="successMessage">Success! Thank you For Contacting Us!</div>
+        <p  *ngIf="showSubmitErrorMessage" class="showSubmitErrorMessage">Unable to save this cat. Please Try Again!</p>
+        <div *ngIf="showSuccessMessage" class="successMessage">Success! Thank you for tracking our commnity cats!</div>
 
     </form>
 </div>

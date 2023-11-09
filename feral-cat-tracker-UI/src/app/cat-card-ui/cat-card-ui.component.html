@@ -1,5 +1,6 @@
 <div class="card">
-    <img class="card-img-top" src="/assets/FeralCatTrackLogo.png" alt="Card image cap">
+    <img src="{{cat.fileDownloadUri}}" alt="{{cat.fileName}}" width="250" height="250"
+    (error) ="onImgError($event)">
     <div class="card-body">
         <h5 class="card-title">Name: {{cat.name}}</h5>
         <p class="card-text">Microchip Number: {{cat.microchipNumber}}</p>

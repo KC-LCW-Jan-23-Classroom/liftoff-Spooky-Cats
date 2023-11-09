@@ -14,6 +14,10 @@ import { LogcatserviceService } from '../logcatservice/logcatservice.service';
   styleUrls: ['./logcat.component.css']
 })
 export class LogcatComponent implements OnInit{
+  formvalue : string;
+
+  currentFile: File;
+  selectedFiles: FileList;
   catForm!: FormGroup;
   showSuccessMessage = false;
   showSubmitButton= true;
@@ -49,6 +53,9 @@ export class LogcatComponent implements OnInit{
         dateCaptured: new FormControl(),
         notes: new FormControl(),
         image: new FormControl(),
+        fileName: new FormControl(),
+        type: new FormControl(),
+        data: new FormControl(),
         lastModifiedUser: new FormControl()
       }
     );
@@ -57,6 +64,11 @@ export class LogcatComponent implements OnInit{
   get f(): { [key: string]: AbstractControl } {
     return this.catForm.controls;
   }
+
+  selectFile(event) {
+    this.selectedFiles = event.target.files;
+  }
+
 
   logCat() {
     this.showSuccessMessage = false;
@@ -67,12 +79,20 @@ export class LogcatComponent implements OnInit{
     console.log(this.catForm.value);
     this.submitted= true;
 
+if(this.selectedFiles != null){
+  this.currentFile = this.selectedFiles.item(0);
+} else {
+  this.currentFile = null
+}
+    console.log(this.currentFile);
+
     if(this.catForm.invalid) {
       return;
     }
   
     if(this.catForm.valid){
-    this.catservice.log(this.catForm.value).subscribe(
+      this.formvalue = JSON.stringify(this.catForm.value);
+    this.catservice.log(this.formvalue, this.currentFile).subscribe(
 
       (result) => {
         {          

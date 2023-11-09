@@ -14,4 +14,8 @@ export class CatCardUiComponent {
   @Input()
   cat!: catSearchDisplay; 
 
+  onImgError(event) { 
+    event.target.src = '/assets/FeralCatTrackLogo.png';
+}
+
 }
