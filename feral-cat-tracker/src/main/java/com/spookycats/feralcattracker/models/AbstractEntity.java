@@ -18,6 +18,10 @@ public abstract class AbstractEntity {
         return id;
     }
 
+    public String stringId(){
+        return "" + id;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

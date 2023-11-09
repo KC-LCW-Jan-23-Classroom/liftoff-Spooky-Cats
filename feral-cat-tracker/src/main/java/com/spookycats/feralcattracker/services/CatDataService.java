@@ -1,8 +1,6 @@
 package com.spookycats.feralcattracker.services;
 import com.spookycats.feralcattracker.data.CatRepository;
-import com.spookycats.feralcattracker.data.FileRepository;
 import com.spookycats.feralcattracker.models.CatData;
-import com.spookycats.feralcattracker.models.Files;
 import com.spookycats.feralcattracker.models.dto.CatDataFormDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,19 +9,15 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Stream;
 
 @Service
 public class CatDataService {
     @Autowired
     CatRepository catRepository;
 
-    @Autowired
-    FileRepository fileRepository;
 
-    public void addNewCat(CatDataFormDTO catDataFormDTO){
+    public void addNewCat(CatDataFormDTO catDataFormDTO, MultipartFile file) throws IOException{
         CatData cat = new CatData();
         cat.setMicrochipNumber(catDataFormDTO.getMicrochipNumber());
         cat.setName(catDataFormDTO.getName());
@@ -44,27 +38,21 @@ public class CatDataService {
         cat.setDateCaptured(catDataFormDTO.getDateCaptured());
         cat.setNotes(catDataFormDTO.getNotes());
         cat.setImage(catDataFormDTO.getImage());
+        if(file != null){
+            String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+            cat.setFileName(fileName);
+            cat.setType(file.getContentType());
+            cat.setData(file.getBytes());
+        }
         cat.setLastModifiedUser("System User");       //TODO: Extrapolate the created by user from logged in user
         cat.setLastModifiedDate(String.valueOf(LocalDate.now()));
         cat.setCreatedDate(String.valueOf(LocalDate.now()));
         catRepository.save(cat);
     }
 
-    public Files store(MultipartFile file) throws IOException {
-        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-        Files newFile = new Files(fileName, file.getContentType(), file.getBytes());
-
-        return fileRepository.save(newFile);
+    public CatData getFile(int id) {
+        return catRepository.findById(id).get();
     }
-
-    public Files getFile(String id) {
-        return fileRepository.findById(id).get();
-    }
-
-    public Stream<Files> getAllFiles() {
-        return fileRepository.findAll().stream();
-    }
-
 
 
     public void updateCat(CatDataFormDTO catDataFormDTO){

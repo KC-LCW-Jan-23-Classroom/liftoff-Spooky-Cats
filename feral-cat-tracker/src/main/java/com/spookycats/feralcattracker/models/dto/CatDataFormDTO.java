@@ -1,28 +1,63 @@
 package com.spookycats.feralcattracker.models.dto;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
 
 public class CatDataFormDTO {
-    private String microchipNumber;
-    private String name;
-    private String addressLastSeen;
-    private String sex;
-    private String breed;
-    private String color;
-    private String furType;
-    private String weight;
-    private String estimatedAge;
-    private String alteredStatus;
-    private String rabiesVaccineDate;
-    private String distemperVaccineDate;
-    private String fhvVaccineDate;
-    private String fivVaccineDate;
-    private String felvVaccineDate;
-    private String bordetellaVaccineDate;
-    private String dateCaptured;
-    private String notes;
-    private String image;
-    private String lastModifiedUser;
-    private String lastModifiedDate;
-    private String createdDate;
+    public String microchipNumber;
+    public String name;
+    public String addressLastSeen;
+    public String sex;
+    public String breed;
+    public String color;
+    public String furType;
+    public String weight;
+    public String estimatedAge;
+    public String alteredStatus;
+    public String rabiesVaccineDate;
+    public String distemperVaccineDate;
+    public String fhvVaccineDate;
+    public String fivVaccineDate;
+    public String felvVaccineDate;
+    public String bordetellaVaccineDate;
+    public String dateCaptured;
+    public String notes;
+    public String image;
+    public String fileName;
+    public String type;
+    public byte[] data;
+    public String lastModifiedUser;
+
+    public CatDataFormDTO() {
+    }
+
+    public CatDataFormDTO(String microchipNumber, String name, String addressLastSeen, String sex, String breed, String color, String furType, String weight, String estimatedAge, String alteredStatus, String rabiesVaccineDate, String distemperVaccineDate, String fhvVaccineDate, String fivVaccineDate, String felvVaccineDate, String bordetellaVaccineDate, String dateCaptured, String notes, String image, String fileName, String type, byte[] data, String lastModifiedUser) {
+        this.microchipNumber = microchipNumber;
+        this.name = name;
+        this.addressLastSeen = addressLastSeen;
+        this.sex = sex;
+        this.breed = breed;
+        this.color = color;
+        this.furType = furType;
+        this.weight = weight;
+        this.estimatedAge = estimatedAge;
+        this.alteredStatus = alteredStatus;
+        this.rabiesVaccineDate = rabiesVaccineDate;
+        this.distemperVaccineDate = distemperVaccineDate;
+        this.fhvVaccineDate = fhvVaccineDate;
+        this.fivVaccineDate = fivVaccineDate;
+        this.felvVaccineDate = felvVaccineDate;
+        this.bordetellaVaccineDate = bordetellaVaccineDate;
+        this.dateCaptured = dateCaptured;
+        this.notes = notes;
+        this.image = image;
+        this.fileName = fileName;
+        this.type = type;
+        this.data = data;
+        this.lastModifiedUser = lastModifiedUser;
+    }
 
     public String getMicrochipNumber() {
         return microchipNumber;
@@ -184,19 +219,28 @@ public class CatDataFormDTO {
         this.lastModifiedUser = lastModifiedUser;
     }
 
-    public String getLastModifiedDate() {
-        return lastModifiedDate;
+    public String getFileName() {
+        return fileName;
     }
 
-    public void setLastModifiedDate(String lastModifiedDate) {
-        this.lastModifiedDate = lastModifiedDate;
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
     }
 
-    public String getCreatedDate() {
-        return createdDate;
+    public String getType() {
+        return type;
     }
 
-    public void setCreatedDate(String createdDate) {
-        this.createdDate = createdDate;
+    public void setType(String type) {
+        this.type = type;
     }
+
+    public byte[] getData() {
+        return data;
+    }
+
+    public void setData(byte[] data) {
+        this.data = data;
+    }
+
 }
