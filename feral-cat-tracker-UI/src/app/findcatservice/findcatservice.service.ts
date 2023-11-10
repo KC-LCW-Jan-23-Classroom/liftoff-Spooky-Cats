@@ -21,4 +21,6 @@ export class FindcatserviceService {
     console.log('Find All Cats');
     return this.http.get<Cat[]>(`http://localhost:8080/find`);
   }
+
+  //todo maybe findcaybyid
 }
