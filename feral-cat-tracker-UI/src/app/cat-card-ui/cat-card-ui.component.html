@@ -7,8 +7,8 @@
         <p class="card-text">Sex: {{cat.sex}}</p>
         <p class="card-text">Color: {{cat.color}}</p>
         <p class="card-text"><small class="text-muted">Last Modified Date: {{cat.lastModifiedDate}}</small></p>
-        <a routerLink="/cat-profile" [queryParams]="{ microchipNumber: cat.microchipNumber }" class="btn btn-primary">
-            Click to View Profile
+        <a routerLink="/catProfile" [queryParams]="{ microchipNumber: cat.microchipNumber }" class="btn btn-primary">
+            View Profile
         </a>
     </div>
 </div>

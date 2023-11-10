@@ -9,6 +9,7 @@ import { FindcatserviceService } from '../findcatservice/findcatservice.service'
 })
 export class SearchResultsComponent {
 searchTerm = ""
+queryType= ""
 results: Cat[] = []
 cats: Cat[] = [];
 
@@ -20,9 +21,11 @@ cats: Cat[] = [];
       this.route.queryParams.subscribe((params: any) => {
         console.log(params)
         this.searchTerm = params["query"]
-        this.findcatService.search(this.searchTerm).subscribe((data) => {
+        this.queryType = params["queryType"]
+        this.findcatService.search(this.searchTerm, this.queryType).subscribe((data) => {
           this.cats = data;
           console.log(this.cats + "**response.cats**")
+          console.log("search-results: " + this.queryType )
         })
       })
     }

@@ -35,10 +35,24 @@ public class CatDataController {
     }
 
     @GetMapping("/results")
-    public ResponseEntity<List<CatData>> findByQuery(@RequestParam("query") String query){
-        //If (queryType) call correct service method
+    public ResponseEntity<List<CatData>> findByQuery(@RequestParam("query") String query,
+                                                     @RequestParam("queryType") String queryType) {
+        if ("microchip".equals(queryType)) {
+            return ResponseEntity.ok(catRepository.searchCatsByMicrochip(query));
+        }
 
-        return ResponseEntity.ok(catRepository.searchCats(query));
+        if ("location".equals(queryType)) {
+            return ResponseEntity.ok(catRepository.searchByLocation(query));
+        }
+
+        if ("color".equals(queryType)) {
+            return ResponseEntity.ok(catRepository.searchByColor(query));
+        }
+
+        System.out.println("Received query: " + query);
+        System.out.println("Received queryType: " + queryType);
+
+        return ResponseEntity.ok(catRepository.searchByAll(query));
     }
 
     @PostMapping( "/log")
