@@ -1,8 +1,9 @@
 package com.spookycats.feralcattracker.models;
 
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.annotation.Id;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.util.Objects;
 
@@ -29,14 +30,20 @@ public class CatData extends AbstractEntity {
     private String dateCaptured;
     private String notes;
     private String image;
+    private String fileName;
+    private String type;
+    @Lob
+    @Column(name = "data", columnDefinition = "LONGBLOB")
+    private byte[] data;
     private String lastModifiedUser;
     private String lastModifiedDate;
     private String createdDate;
 
+
     public CatData() {
     }
 
-    public CatData(String microchipNumber, String name, String addressLastSeen, String sex, String breed, String color, String furType, String weight, String estimatedAge, String alteredStatus, String rabiesVaccineDate, String distemperVaccineDate, String fhvVaccineDate, String fivVaccineDate, String felvVaccineDate, String bordetellaVaccineDate, String dateCaptured, String notes, String image, String lastModifiedUser, String lastModifiedDate, String createdDate) {
+    public CatData(String microchipNumber, String name, String addressLastSeen, String sex, String breed, String color, String furType, String weight, String estimatedAge, String alteredStatus, String rabiesVaccineDate, String distemperVaccineDate, String fhvVaccineDate, String fivVaccineDate, String felvVaccineDate, String bordetellaVaccineDate, String dateCaptured, String notes, String image, String fileName, String type, byte[] data, String lastModifiedUser, String lastModifiedDate, String createdDate) {
         this.microchipNumber = microchipNumber;
         this.name = name;
         this.addressLastSeen = addressLastSeen;
@@ -56,9 +63,13 @@ public class CatData extends AbstractEntity {
         this.dateCaptured = dateCaptured;
         this.notes = notes;
         this.image = image;
+        this.fileName = fileName;
+        this.type = type;
+        this.data = data;
         this.lastModifiedUser = lastModifiedUser;
         this.lastModifiedDate = lastModifiedDate;
         this.createdDate = createdDate;
+        String fileDownloadUri = getFileDownloadUri();
     }
 
     public String getMicrochipNumber() {
@@ -235,6 +246,38 @@ public class CatData extends AbstractEntity {
 
     public void setCreatedDate(String createdDate) {
         this.createdDate = createdDate;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public byte[] getData() {
+        return data;
+    }
+
+    public void setData(byte[] data) {
+        this.data = data;
+    }
+
+    public String getFileDownloadUri() {
+        return ServletUriComponentsBuilder
+                .fromCurrentContextPath()
+                .path("cat_data/")
+                .path(this.stringId())
+                .toUriString();
     }
 
     @Override

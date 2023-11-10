@@ -14,7 +14,14 @@ import { LogcatserviceService } from '../logcatservice/logcatservice.service';
   styleUrls: ['./logcat.component.css']
 })
 export class LogcatComponent implements OnInit{
+  formvalue : string;
+
+  currentFile: File;
+  selectedFiles: FileList;
   catForm!: FormGroup;
+  showSuccessMessage = false;
+  showSubmitButton= true;
+  showSubmitErrorMessage = false;
   submitted = false;
   constructor(
     private router: Router,
@@ -46,6 +53,9 @@ export class LogcatComponent implements OnInit{
         dateCaptured: new FormControl(),
         notes: new FormControl(),
         image: new FormControl(),
+        fileName: new FormControl(),
+        type: new FormControl(),
+        data: new FormControl(),
         lastModifiedUser: new FormControl()
       }
     );
@@ -55,18 +65,53 @@ export class LogcatComponent implements OnInit{
     return this.catForm.controls;
   }
 
+  selectFile(event) {
+    this.selectedFiles = event.target.files;
+  }
+
+
   logCat() {
+    this.showSuccessMessage = false;
+    this.showSubmitButton = true;
+    this.submitted= true;
+    this.showSubmitErrorMessage = false;
     console.log("log cat");
     console.log(this.catForm.value);
     this.submitted= true;
+
+if(this.selectedFiles != null){
+  this.currentFile = this.selectedFiles.item(0);
+} else {
+  this.currentFile = null
+}
+    console.log(this.currentFile);
 
     if(this.catForm.invalid) {
       return;
     }
   
     if(this.catForm.valid){
-      this.catservice.log(this.catForm.value).subscribe(result => alert(result));
-      this.router.navigate(['/log']); //TODO: navigate to page for created cat.
+      this.formvalue = JSON.stringify(this.catForm.value);
+    this.catservice.log(this.formvalue, this.currentFile).subscribe(
+
+      (result) => {
+        {          
+          this.showSuccessMessage = true;
+          this.showSubmitButton = false;
+          this.showSubmitErrorMessage = false;
+      setTimeout(() => {
+             this.router.navigate(['/find']); //TODO: navigate to page for created cat.
+      } , 5000);
+    }
+      
+      },
+      (error) => {
+        this.showSuccessMessage = false;
+        this.showSubmitButton = true; 
+        this.showSubmitErrorMessage= true
+        
+      }
+    );
     }
 
   }

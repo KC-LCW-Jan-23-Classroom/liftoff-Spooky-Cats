@@ -1,10 +1,13 @@
 <br>
 <br>
-
 <app-search-form></app-search-form>
 <br>
 <br>
-
+<p  *ngIf="showLoadErrorMessage" class="showLoadErrorMessage">Unable to load cat data.</p>
+<br>
+<br>
+<br>
+<br>
 <div class="card-deck">
 <div class="row">
   <app-cat-card-ui *ngFor="let cat of cats" [cat]="cat"
@@ -13,6 +16,6 @@
 </div>
 </div>
 <br>
-
+<!-- <router-outlet></router-outlet> -->
 <br>
 <br>
