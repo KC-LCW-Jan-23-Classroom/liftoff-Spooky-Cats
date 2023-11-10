@@ -7,6 +7,7 @@ import { RegisterComponent } from './register/register.component';
 import { LogcatComponent } from './logcat/logcat.component';
 import { FindcatComponent } from './findcat/findcat.component';
 import { SearchResultsComponent } from './search-results/search-results.component';
+import { CatProfilePageComponent } from './cat-profile-page/cat-profile-page.component';
 
 const routes: Routes = [
   {
@@ -41,6 +42,10 @@ const routes: Routes = [
   {
     path: 'results',
     component:SearchResultsComponent
+  },
+  {
+    path: 'catProfile',
+    component:CatProfilePageComponent
   }
   
   

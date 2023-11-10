@@ -1,22 +1,18 @@
 <br>
 <br>
+
 <app-search-form></app-search-form>
 <br>
 <br>
-<div class="card-deck" *ngFor = "let cat of cats">
-  <div class="card">
-    <img class="card-img-top" src="/assets/FeralCatTrackLogo.png" alt="Card image cap">
-    <div class="card-body">
-      <h5 class="card-title">Name: {{cat.name}}</h5>
-      <p class="card-text">Microchip Number: {{cat.microchipNumber}}</p>
-      <p class="card-text">Color: {{cat.color}}</p>
-      <p class="card-text"><small class="text-muted">Last Modified Date: {{cat.lastModifiedDate}}</small></p>
-    </div>
-  </div>
-  <br>
-</div>
 
-<!-- <router-outlet></router-outlet> -->
+<div class="card-deck">
+<div class="row">
+  <app-cat-card-ui *ngFor="let cat of cats" [cat]="cat"
+    class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12 mb-4">
+  </app-cat-card-ui>
+</div>
+</div>
+<br>
 
 <br>
 <br>
