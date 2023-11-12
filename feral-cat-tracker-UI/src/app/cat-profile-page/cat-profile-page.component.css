@@ -23,11 +23,7 @@ img {
   font-weight: 700;
   margin: 0 0 6px;
 }
-@media (max-width: 767px) {
-  .about-text h3 {
-    font-size: 35px;
-  }
-}
+
 .about-text h6 {
   font-weight: 600;
   margin-bottom: 15px;
@@ -55,7 +51,7 @@ img {
 .about-list label {
   color: #20247b;
   font-weight: 600;
-  width: 88px;
+  width: 200px;
   margin: 0;
   position: relative;
 }
