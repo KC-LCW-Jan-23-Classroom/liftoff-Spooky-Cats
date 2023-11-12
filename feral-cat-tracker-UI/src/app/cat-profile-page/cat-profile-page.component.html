@@ -1,5 +1,41 @@
-<p>cat-profile-page works!</p>
-<h5>Name: {{cat.name}}</h5>
-        <p>Microchip Number: {{cat.microchipNumber}}</p>
-        <p >Sex: {{cat.sex}}</p>
-        <p >Color: {{cat.color}}</p>
+<img src="{{cat.fileDownloadUri}}" alt="{{cat.fileName}}" width="300" height="300"
+    (error) ="onImgError($event)">
+<h3>Name: {{cat.name}}</h3>
+
+
+        <div class="container">
+            <h4>Cat Data</h4>
+            <div class="row">
+
+              <div class="col-md">
+                <p>Micro Number: {{cat.microchipNumber}} </p>
+                <p>Sex: {{cat.sex}} </p>
+                <p>Location: {{cat.addressLastSeen}} </p>
+                <p>Breed: {{cat.breed}} </p>
+                <p>Color: {{cat.color}} </p>
+                <p>Fur Type: {{cat.furType}} </p>
+                <p>Weight (Lbs): {{cat.weight}} </p>
+                <p>Estimated Age (yrs): {{cat.estimatedAge}} </p>
+              </div>
+
+              <div class="col-md">
+                <p>Altered Status: {{cat.alteredStatus}} </p>
+                <p>Date Captured: {{cat.dateCaptured}}</p>
+                <p>Rabies Vaccine Date: {{cat.rabiesVaccineDate}} </p>
+                <p>Distemper Vaccine Date: {{cat.distemperVaccineDate}} </p>
+                <p>FHV Vaccine Date: {{cat.fhvVaccineDate}} </p>
+                <p>FIV Vaccine Date: {{cat.fivVaccineDate}} </p>
+                <p>FELV Vaccine Date: {{cat.felvVaccineDate}} </p>
+                <p>Bordetella Vaccine Date: {{cat.bordetellaVaccineDate}} </p>
+              </div>
+
+            </div>
+          </div>
+        
+          
+        <div class="container">
+            <div class="row">
+                <h3>Notes:</h3>
+                    <p>{{cat.notes}}</p>
+            </div>
+        </div>
