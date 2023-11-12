@@ -7,11 +7,16 @@ padding-top: 50px;
 padding-bottom: 50px;
 padding-left: 25px;
 padding-right: 25px;
+
+}
+
+.body{
+    background-color: #45b678;
 }
 
 .container{
     align-content: center;
-    
+  
 }
 
 .image-container, image{
@@ -41,8 +46,23 @@ padding-right: 25px;
 .row.display-flex {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
+    
   }
   .row.display-flex > [class*='col-'] {
     display: flex;
     flex-direction: column;
   }
+
+  .btn{
+    margin-top: 25px;
+    margin-bottom: 50px;
+    align-content: center;
+  }
+
+  .btn-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 34px;
+}
