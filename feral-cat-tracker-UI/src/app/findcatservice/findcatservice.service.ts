@@ -12,10 +12,14 @@ export class FindcatserviceService {
   private findByMicrochipURL = 'http://localhost:8080/find-by-microchip-number';
 
   constructor(private http: HttpClient) {}
+  
 
-  search(query: string): Observable<any> {
+
+  search(query: string, queryType: string ): Observable<any> {
+    
     console.log('Searched cat(s)')
-    return this.http.get<Cat[]>(`${this.apiUrl}?query=${query}`);
+    
+    return this.http.get<Cat[]>(`${this.apiUrl}?query=${query}&queryType=${queryType}`);
   }
 
   find(): Observable<Cat[]> {

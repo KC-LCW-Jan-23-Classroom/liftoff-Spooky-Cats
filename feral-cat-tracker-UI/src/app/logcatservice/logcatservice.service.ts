@@ -9,7 +9,14 @@ export class LogcatserviceService {
 
   constructor(private http:HttpClient) { }
 
-  log(data: any): Observable<any>{
-    return this.http.post('http://localhost:8080/log', data, {responseType: 'text'})
+  log(data: any, file: File): Observable<any>{
+    const formData: FormData = new FormData();
+      formData.append('cat', data);
+      formData.append('file', file);
+    
+    return this.http.post('http://localhost:8080/log', formData, {
+      reportProgress: true,
+      responseType: 'text'
+    });
   }
 }

@@ -6,17 +6,25 @@ import { FindcatserviceService } from '../findcatservice/findcatservice.service'
   templateUrl: './findcat.component.html',
   styleUrls: ['./findcat.component.css'],
 })
-export class FindcatComponent {
+export class FindcatComponent implements OnInit{
+  showLoadErrorMessage = false;
   cats: Cat[] = [];
 
   constructor(private findcatService: FindcatserviceService) {}
+  
+ngOnInit(){
+  this.findcatService.find().subscribe(data => {
+    this.showLoadErrorMessage = false;
+    this.cats = data;
+    console.log(data);
+    console.log(this.cats);
 
-  ngOnInit() {
-    this.findcatService.find().subscribe((data) => {
-      this.cats = data;
+    
+  }, (error) => {
+    this.showLoadErrorMessage = true;
+  })
 
-      console.log(data);
-      console.log(this.cats);
-    });
-  }
+
+}
+
 }
