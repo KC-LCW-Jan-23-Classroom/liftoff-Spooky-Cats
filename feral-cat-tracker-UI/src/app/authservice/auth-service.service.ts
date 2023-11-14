@@ -10,11 +10,11 @@ export class AuthServiceService {
 
   login(data: any): Observable<any> {
     console.log('login');
-    return this.http.post(`http://localhost:8080/login`, data);
+    return this.http.post(`http://localhost:8080/login`, data, { withCredentials: true });
   }
 
   register(data: any): Observable<any> {
     console.log('reg2');
-    return this.http.post(`http://localhost:8080/register`, data);
+    return this.http.post(`http://localhost:8080/register`, data, { withCredentials: true });
   }
 }

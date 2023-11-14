@@ -16,7 +16,8 @@ export class LogcatserviceService {
     
     return this.http.post('http://localhost:8080/log', formData, {
       reportProgress: true,
-      responseType: 'text'
+      responseType: 'text',
+      withCredentials: true 
     });
   }
 }

@@ -33,7 +33,7 @@ const routes: Routes = [
   },
   {
     path: 'log',
-    component:LogcatComponent
+    component:LogcatComponent, 
   },
   {
     path: 'find',
