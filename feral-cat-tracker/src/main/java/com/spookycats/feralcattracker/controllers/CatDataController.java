@@ -34,6 +34,14 @@ public class CatDataController {
         return catDataService.findAllCats();
     }
 
+
+    @GetMapping("/find-by-microchip-number")
+
+    public CatData getCat(@RequestParam("microchipNumber") String microchipNumber){
+        return catDataService.findByMicrochip(microchipNumber);
+    }
+
+
     @GetMapping("/results")
     public ResponseEntity<List<CatData>> findByQuery(@RequestParam("query") String query,
                                                      @RequestParam("queryType") String queryType) {

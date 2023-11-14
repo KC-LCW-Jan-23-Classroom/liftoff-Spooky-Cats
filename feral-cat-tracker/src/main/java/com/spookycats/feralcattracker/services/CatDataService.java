@@ -75,6 +75,9 @@ public class CatDataService {
             return false;
         }
     }
+    public CatData findByMicrochip(String microchipNumber){
+       return catRepository.findByMicrochipNumber(microchipNumber);
+    }
 
     // Create methods to call each repository method
 }
