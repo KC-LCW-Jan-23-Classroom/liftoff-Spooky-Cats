@@ -107,6 +107,7 @@ public class AuthenticationController {
         } else {
             setUserInSession(request.getSession(), theUser);
             responseBody.put("message", "User successfully logged in.");
+            responseBody.put("username", theUser.getUsername());
             response = ResponseEntity
                     .status(HttpStatus.CREATED)
                     .body(responseBody);
@@ -114,5 +115,9 @@ public class AuthenticationController {
         return  response;
     }
 
-
+    @GetMapping("/logout")
+    public String logout(HttpServletRequest request){
+        request.getSession().invalidate();
+        return "redirect:/login";
+    }
 }
