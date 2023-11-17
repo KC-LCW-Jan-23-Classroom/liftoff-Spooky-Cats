@@ -1,6 +1,7 @@
 <div class="topnav">
     <a [routerLink]="['/home']" routerLinkActive="active" href="/home">Home</a>
-    <a [routerLink]="['/log']" routerLinkActive="active" href="/log">Log a Cat</a>
-    <a [routerLink]="['/find']" routerLinkActive="active" href="/find">Find a Cat</a>
-    <a [routerLink]="['/map']" routerLinkActive="active" href="/map">Cat Map</a>
-  </div>
+    <a [routerLink]="['/log']" routerLinkActive="active" href="/log" *ngIf="isAuthenticated()">Log a Cat</a>
+    <a [routerLink]="['/find']" routerLinkActive="active" href="/find" *ngIf="isAuthenticated()">Find a Cat</a>
+    <a [routerLink]="['/map']" routerLinkActive="active" href="/map" *ngIf="isAuthenticated()">Cat Map</a>
+  </div>  
+

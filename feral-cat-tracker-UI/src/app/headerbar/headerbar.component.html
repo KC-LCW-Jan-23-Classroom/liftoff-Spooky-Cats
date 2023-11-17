@@ -13,9 +13,16 @@
       </form>
     </span>
     <span id="links">
-      <a href="/login" id="login">Login</a>
-      <a> | </a>
-      <a href="/register" id="register">Register</a>
+      <ng-container *ngIf="isAuthenticated(); else loginLink">
+        <span id="greeting">Hello, {{ getUsername() }}!</span>
+        <a> | </a>
+        <a class="logout" href="#" (click)="logout()">Logout</a>
+      </ng-container>
+      <ng-template #loginLink>
+        <a href="/login" id="login">Login</a>
+        <a> | </a>
+        <a href="/register" id="register">Register</a>
+      </ng-template>
     </span>
   </div>
 
