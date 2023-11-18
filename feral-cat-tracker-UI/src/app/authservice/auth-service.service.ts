@@ -54,7 +54,6 @@ export class AuthServiceService {
         
         if (response.ok) {
           this.message = response.body.message;
-          // this.authenticated = true;
           this.username = response.body.username;
         } else {
           this.authenticated = false;
