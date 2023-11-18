@@ -10,26 +10,26 @@ export class AuthServiceService {
   authenticated = false;
   username: string | undefined;
   constructor(private http: HttpClient) {}
-
+  message: string;
   login(data: any): Observable<any> {
    
-   let response = this.http.post(`http://localhost:8080/login`, data, { withCredentials: true });
+   let response = this.http.post(`http://localhost:8080/login`, data, { withCredentials: true, observe: 'response' });
     console.log('login');
- 
 
     return response
     .pipe(
-      tap(response => console.log('Register response:', response)),
+      tap(response => console.log('Login response:', response)),
       map((response: any) => {
-        (console.log("Response = " + response.message))
         
-        if (response.message == "User successfully logged in.") {
+        if (response.ok) {
           this.authenticated = true;
-          this.username = response.username;
+          this.message = response.body.message;
+          this.username = response.body.username;
           console.log(this.username)
         } else {
           this.authenticated = false;
           this.username = undefined;
+          this.message = response.body.message;
         }
         (console.log("Authenticate = " + this.authenticated))
         return response; 
@@ -43,19 +43,22 @@ export class AuthServiceService {
 
   register(data: any): Observable<any> {
 
-    let response = this.http.post(`http://localhost:8080/register`, data, { withCredentials: true });
+    let response = this.http.post(`http://localhost:8080/register`, data, { withCredentials: true, observe: 'response' });
      
     console.log('reg2');
     return response
     .pipe(
       tap(response => console.log('Register response:', response)),
       map((response: any) => {
-        (console.log("Response = " + response.message))
         
-        if (response.message == "Given user details are successfully registered") {
-          this.authenticated = true;
+        
+        if (response.ok) {
+          this.message = response.body.message;
+          // this.authenticated = true;
+          this.username = response.body.username;
         } else {
           this.authenticated = false;
+          this.message = response.body.message;
         }
         (console.log("Authenticate = " + this.authenticated))
         return response; 
