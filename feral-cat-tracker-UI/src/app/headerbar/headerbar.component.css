@@ -48,3 +48,11 @@
   .header #register:hover {
     color: rgb(60, 123, 206);
   }
+
+  .logout {
+    color: white;
+  }
+
+  .logout:hover {
+    color: rgb(60, 123, 206);
+  }

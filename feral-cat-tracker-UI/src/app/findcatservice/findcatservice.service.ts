@@ -19,12 +19,12 @@ export class FindcatserviceService {
     
     console.log('Searched cat(s)')
     
-    return this.http.get<Cat[]>(`${this.apiUrl}?query=${query}&queryType=${queryType}`);
+    return this.http.get<Cat[]>(`${this.apiUrl}?query=${query}&queryType=${queryType}`, { withCredentials: true });
   }
 
   find(): Observable<Cat[]> {
     console.log('Find All Cats');
-    return this.http.get<Cat[]>(`http://localhost:8080/find`);
+    return this.http.get<Cat[]>(`http://localhost:8080/find`, { withCredentials: true });
   }
 
   findCatByMicrochipNumber(microchipNumber: string): Observable<any> {

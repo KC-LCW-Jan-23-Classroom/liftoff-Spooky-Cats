@@ -76,7 +76,7 @@ export class RegisterComponent implements OnInit {
         }
 
         {
-          alert(result.message);
+          alert(result.body.message);
         }
       },
       (error) => {

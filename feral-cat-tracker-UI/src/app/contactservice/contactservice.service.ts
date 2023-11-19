@@ -10,6 +10,6 @@ export class ContactserviceService {
   constructor(private http:HttpClient) { }
   
   contact(data: any): Observable<any>{
-    return this.http.post('http://localhost:8080/contact', data, {responseType: 'text'})
+    return this.http.post('http://localhost:8080/contact', data, { withCredentials: true, responseType: 'text'})
   }
 }
