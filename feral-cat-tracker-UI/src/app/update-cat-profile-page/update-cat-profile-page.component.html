@@ -3,72 +3,72 @@
         <div class="row align-items-center flex-row-reverse">
             <div class="col-lg-6">
                 <div class="about-text go-to">
-                    <h3 class="dark-color">{{cat.name}}</h3>
+                    <h3 class="dark-color">{{updateCat.name}}</h3>
                     
                     <div class="row about-list">
                         <div class="col-md-6">
                             <div class="media">
                                 <label>Microchip Number:</label>
-                                <p>{{cat.microchipNumber}}</p>
+                                <p>{{updateCat.microchipNumber}}</p>
                             </div>
                             <div class="media">
                                 <label>Sex:</label>
-                                <p>{{cat.sex}}</p>
+                                <p>{{updateCat.sex}}</p>
                             </div>
                             <div class="media">
                                 <label>General Location:</label>
-                                <p>{{cat.addressLastSeen}}</p>
+                                <p>{{updateCat.addressLastSeen}}</p>
                             </div>
                             <div class="media">
                                 <label>Breed:</label>
-                                <p>{{cat.breed}}</p>
+                                <p>{{updateCat.breed}}</p>
                             </div>
                             <div class="media">
                                 <label>Dominant Color:</label>
-                                <p>{{cat.color}}</p>
+                                <p>{{updateCat.color}}</p>
                             </div>
                             <div class="media">
                                 <label>Fur Type:</label>
-                                <p>{{cat.furType}}</p>
+                                <p>{{updateCat.furType}}</p>
                             </div>
                             <div class="media">
                                 <label>Weight in Pounds:</label>
-                                <p>{{cat.weight}}</p>
+                                <p>{{updateCat.weight}}</p>
                             </div>
                             <div class="media">
                                 <label>Approx. Age:</label>
-                                <p>{{cat.estimatedAge}}</p>
+                                <p>{{updateCat.estimatedAge}}</p>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="media">
                                 <label>Altered Status:</label>
-                                <p>{{cat.alteredStatus}}</p>
+                                <p>{{updateCat.alteredStatus}}</p>
                             </div>
                            
                             <div class="media">
                                 <label>Rabies Vaccine Date:</label>
-                                <p>{{cat.rabiesVaccineDate}}</p>
+                                <p>{{updateCat.rabiesVaccineDate}}</p>
                             </div>
                             <div class="media">
                                 <label>Distemper Vaccine Date:</label>
-                                <p>{{cat.distemperVaccineDate}}</p>
+                                <p>{{updateCat.distemperVaccineDate}}</p>
                             </div>
                             <div class="media">
                                 <label>FHV Vaccine Date:</label>
-                                <p>{{cat.fhvVaccineDate}}</p>
+                                <p>{{updateCat.fhvVaccineDate}}</p>
                             </div>
                             <div class="media">
                                 <label>FIV Vaccine Date:</label>
-                                <p>{{cat.fivVaccineDate}}</p>
+                                <p>{{updateCat.fivVaccineDate}}</p>
                             </div>
                             <div class="media">
                                 <label>FelV Vaccine Date:</label>
-                                <p>{{cat.felvVaccineDate}}</p>
+                                <p>{{updateCat.felvVaccineDate}}</p>
                             </div>
                             <div class="media">
                                 <label>Bordetella Vaccine Date:</label>
-                                <p>{{cat.bordetellaVaccineDate}}</p>
+                                <p>{{updateCat.bordetellaVaccineDate}}</p>
                             </div>
                         </div>
                     </div>
@@ -76,15 +76,15 @@
             </div>
             <div class="col-lg-6">
                 <div class="about-avatar">
-                    <img class="rounded" src="{{cat.fileDownloadUri}}" alt="{{cat.fileName}}" width="300" height="300"
+                    <img class="rounded" src="{{updateCat.fileDownloadUri}}" alt="{{updateCat.fileName}}" width="300" height="300"
     (error) ="onImgError($event)">
                 </div>
                 <div class="media">
                     <label>Date Captured:</label>
-                    <p>{{cat.dateCaptured}}</p>
+                    <p>{{updateCat.dateCaptured}}</p>
                 </div>
                 <h6 class="theme-color lead">Notes:</h6>
-                    <p>{{cat.notes}}</p>
+                    <p>{{updateCat.notes}}</p>
             </div>
         </div>
         
@@ -93,10 +93,7 @@
                 <div class="col">
                     <div class="count-data text-center">
                         <div class="btn-container">
-                            <a routerLink="/updateCat" [queryParams]="{ microchipNumber: cat.microchipNumber }" class="btn btn-primary">
-                                Update Profile
-                            </a>
-                      
+                            <button type="button" class="btn btn-primary">Update Profile</button>  
                         </div>
                     </div>
                 </div>

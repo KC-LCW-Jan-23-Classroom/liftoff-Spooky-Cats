@@ -29,7 +29,7 @@ export class FindcatserviceService {
 
   findCatByMicrochipNumber(microchipNumber: string): Observable<any> {
     console.log('')
-    return this.http.get<Cat[]>(`${this.findByMicrochipURL}?microchipNumber=${microchipNumber}`);
+    return this.http.get<Cat[]>(`${this.findByMicrochipURL}?microchipNumber=${microchipNumber}`, { withCredentials: true });
   }
 
   //todo maybe findcaybyid
