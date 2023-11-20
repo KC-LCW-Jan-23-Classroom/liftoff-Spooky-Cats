@@ -1,4 +1,5 @@
 package com.spookycats.feralcattracker.services;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.spookycats.feralcattracker.data.CatRepository;
 import com.spookycats.feralcattracker.models.CatData;
 import com.spookycats.feralcattracker.models.dto.CatDataFormDTO;
@@ -58,6 +59,23 @@ public class CatDataService {
     public void updateCat(CatDataFormDTO catDataFormDTO){
         CatData updateCat = catRepository.findByMicrochipNumber(catDataFormDTO.getMicrochipNumber());
         updateCat.setLastModifiedDate(String.valueOf(LocalDate.now()));
+        updateCat.setAddressLastSeen(catDataFormDTO.getAddressLastSeen());
+        updateCat.setSex(catDataFormDTO.getSex());
+        updateCat.setBreed(catDataFormDTO.getBreed());
+        updateCat.setColor(catDataFormDTO.getColor());
+        updateCat.setFurType(catDataFormDTO.getFurType());
+        updateCat.setWeight(catDataFormDTO.getWeight());
+        updateCat.setEstimatedAge(catDataFormDTO.getEstimatedAge());
+        updateCat.setAlteredStatus(catDataFormDTO.getAlteredStatus());
+        updateCat.setRabiesVaccineDate(catDataFormDTO.getRabiesVaccineDate());
+        updateCat.setDistemperVaccineDate(catDataFormDTO.getDistemperVaccineDate());
+        updateCat.setFhvVaccineDate(catDataFormDTO.getFhvVaccineDate());
+        updateCat.setFivVaccineDate(catDataFormDTO.getFivVaccineDate());
+        updateCat.setFelvVaccineDate(catDataFormDTO.getFelvVaccineDate());
+        updateCat.setBordetellaVaccineDate(catDataFormDTO.getBordetellaVaccineDate());
+        updateCat.setDateCaptured(catDataFormDTO.getDateCaptured());
+        updateCat.setNotes(catDataFormDTO.getNotes());
+        updateCat.setImage(catDataFormDTO.getImage());
         catRepository.save(updateCat);
         //TODO: Fix this class to update changed fields, ignore nulls. Right now it does not accept new field changes, just updates last modified date.
 
