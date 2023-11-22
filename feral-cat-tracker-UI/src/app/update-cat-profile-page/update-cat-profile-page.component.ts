@@ -1,4 +1,4 @@
-import { Component,Input } from '@angular/core';
+import { Component,Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Cat } from '../models/cat';
 import { FindcatserviceService } from '../findcatservice/findcatservice.service';
@@ -16,7 +16,7 @@ export type catSearchDisplay = Partial<Cat>
   templateUrl: './update-cat-profile-page.component.html',
   styleUrls: ['./update-cat-profile-page.component.css']
 })
-export class UpdateCatProfilePageComponent {
+export class UpdateCatProfilePageComponent implements OnInit {
   microchipNumber= ""
   updateCat!: Cat;
   showSuccessMessage = false;
@@ -31,7 +31,7 @@ export class UpdateCatProfilePageComponent {
   initForm() {
     this.catForm = new FormGroup(
       {
-        microchipNumber: new FormControl('', [Validators.required]),
+        microchipNumber: new FormControl(this.updateCat.microchipNumber, [Validators.required]),
         name: new FormControl(this.updateCat.name, [Validators.required]),
         addressLastSeen: new FormControl(this.updateCat.addressLastSeen, [Validators.required]),
         sex: new FormControl(this.updateCat.sex, [Validators.required]),
@@ -49,7 +49,7 @@ export class UpdateCatProfilePageComponent {
         bordetellaVaccineDate: new FormControl(this.updateCat.bordetellaVaccineDate),
         dateCaptured: new FormControl(this.updateCat.dateCaptured),
         notes: new FormControl(this.updateCat.notes),
-        image: new FormControl(this.updateCat.image),
+        image: new FormControl(),
         fileName: new FormControl(this.updateCat.fileName),
         type: new FormControl(),
         data: new FormControl(this.updateCat.data),
@@ -105,8 +105,10 @@ export class UpdateCatProfilePageComponent {
         console.log(this.currentFile);
     
         if(this.catForm.invalid) {
+          console.log("invalid")
           return;
         }
+            
       
         if(this.catForm.valid){
           this.formvalue = JSON.stringify(this.catForm.value);
