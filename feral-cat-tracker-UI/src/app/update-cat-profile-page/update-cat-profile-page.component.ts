@@ -2,7 +2,10 @@ import { Component,Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Cat } from '../models/cat';
 import { FindcatserviceService } from '../findcatservice/findcatservice.service';
-import { FormGroup} from '@angular/forms';
+import {  AbstractControl,
+  FormGroup,
+  FormControl,
+  Validators,} from '@angular/forms';
 import { Router } from '@angular/router';
 import { LogcatserviceService } from '../logcatservice/logcatservice.service';
 
@@ -25,6 +28,43 @@ export class UpdateCatProfilePageComponent {
   catForm!: FormGroup;
   formvalue : string;
 
+  initForm() {
+    this.catForm = new FormGroup(
+      {
+        microchipNumber: new FormControl('', [Validators.required]),
+        name: new FormControl(this.updateCat.name, [Validators.required]),
+        addressLastSeen: new FormControl(this.updateCat.addressLastSeen, [Validators.required]),
+        sex: new FormControl(this.updateCat.sex, [Validators.required]),
+        breed: new FormControl(this.updateCat.breed, [Validators.required]),
+        color: new FormControl(this.updateCat.color, [Validators.required]),
+        furType: new FormControl(this.updateCat.furType, [Validators.required]),
+        weight: new FormControl(this.updateCat.weight),
+        estimatedAge: new FormControl(this.updateCat.estimatedAge),
+        alteredStatus: new FormControl(this.updateCat.alteredStatus),
+        rabiesVaccineDate: new FormControl(this.updateCat.rabiesVaccineDate),
+        distemperVaccineDate: new FormControl(this.updateCat.distemperVaccineDate),
+        fhvVaccineDate: new FormControl(this.updateCat.fhvVaccineDate),
+        fivVaccineDate: new FormControl(this.updateCat.fivVaccineDate),
+        felvVaccineDate: new FormControl(this.updateCat.felvVaccineDate),
+        bordetellaVaccineDate: new FormControl(this.updateCat.bordetellaVaccineDate),
+        dateCaptured: new FormControl(this.updateCat.dateCaptured),
+        notes: new FormControl(this.updateCat.notes),
+        image: new FormControl(this.updateCat.image),
+        fileName: new FormControl(this.updateCat.fileName),
+        type: new FormControl(),
+        data: new FormControl(this.updateCat.data),
+        lastModifiedUser: new FormControl()
+      }
+    );
+  }
+
+  get f(): { [key: string]: AbstractControl } {
+    return this.catForm.controls;
+  }
+  selectFile(event) {
+    this.selectedFiles = event.target.files;
+  }
+
    
 
   onImgError(event) { 
@@ -42,9 +82,12 @@ export class UpdateCatProfilePageComponent {
           this.microchipNumber = params["microchipNumber"]
           this.findcatService.findCatByMicrochipNumber(this.microchipNumber).subscribe((data) => {
             this.updateCat = data;
-            console.log(this.updateCat + "**response.cats**")
+            console.log(JSON.stringify(this.updateCat) + "**response.cats**")
+            this.initForm();
+
           })
-        }) 
+        })
+ 
       }
 
       postUpdateCat() {
