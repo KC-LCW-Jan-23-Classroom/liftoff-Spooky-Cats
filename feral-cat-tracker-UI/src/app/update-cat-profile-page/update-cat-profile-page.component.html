@@ -151,31 +151,33 @@
                         <img class="rounded" src="{{updateCat.fileDownloadUri}}" alt="{{updateCat.fileName}}"
                             width="300" height="300" (error)="onImgError($event)">
                     </div>
-                    <div class="form-group">
-                        <label for="image" class="form-label">Image</label>
+                    <div class="form-group media about-list">
+                        <label for="image" class="form-label">Image:</label>
                         <input type="file" name="image" class="form-control" id="image" aria-describedby="image"
                             formControlName="image" rows="4" cols="50" accept="image/png, image/jpeg"
                             (change)="selectFile($event)" />
                     </div>
-                    <div class="media">
-                        <label>Date Captured:</label>
+                    <div class="media about-list">
+                        <label class=>Date Captured:</label>
                         <input type="date" class="form-control" value={{updateCat.dateCaptured}} id="dateCaptured"
                             aria-describedby="dateCaptured" matTooltip="Enter date captured." matTooltipPosition="left"
                             formControlName="dateCaptured">
                     </div>
-                    <h6 class="theme-color lead">Notes:</h6>
+                    <div class="media about-list">
+                    <label>Notes:</label>
                     <textarea type="text" class="form-control" id="notes" aria-describedby="notes"
                         formControlName="notes" rows="4" cols="50">
                         {{updateCat.notes}}
                     </textarea>
+                    </div>
                 </div>
             </div>
         </div>    
 
-            <div class="counter">
-                <div class="row">
-                    <div class="col">
-                        <div class="count-data text-center">
+            <div class="counter" id="button-footer">
+                <div class="row" >
+                    <div class="col" >
+                        <div class="count-data text-center" >
                             <div class="btn-container">
                                 <button type="button" class="btn btn-primary">Submit Changes</button>
                             </div>

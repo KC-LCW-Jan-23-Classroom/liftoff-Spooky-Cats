@@ -3,7 +3,7 @@ body{
     margin-top:20px;
 }
 .section {
-    padding: 100px 0;
+    padding: 25px 0;
     position: relative;
 }
 .gray-bg {
@@ -49,14 +49,13 @@ img {
   padding: 5px 0;
 }
 .about-list label {
-  color: #20247b;
+  color:  #333;
   font-weight: 600;
   width: 200px;
   margin: 0;
   position: relative;
 }
 .about-list label:after {
-  content: "";
   position: absolute;
   top: 0;
   bottom: 0;
@@ -95,7 +94,7 @@ img {
 }
 .about-section .counter .count {
   font-weight: 700;
-  color: #20247b;
+  color: #1a7442;
   margin: 0 0 5px;
 }
 .about-section .counter p {
@@ -112,8 +111,12 @@ mark {
     color: currentColor;
 }
 .theme-color {
-    color: #fc5356;
+    color: #333;
 }
 .dark-color {
-    color: #20247b;
+    color: #1f5035;
+}
+
+#button-footer{
+  background-color: #45b678;
 }
