@@ -120,7 +120,9 @@ export class UpdateCatProfilePageComponent implements OnInit {
               this.showSubmitButton = false;
               this.showSubmitErrorMessage = false;
           setTimeout(() => {
-                 this.router.navigate(['/find']); //TODO: navigate to page for created cat.
+                 this.router.navigate(['/catProfile'],
+                  {queryParams:{ microchipNumber: this.updateCat.microchipNumber }}
+                  ); //TODO: navigate to page for created cat.
           } , 5000);
         }
           
