@@ -74,21 +74,24 @@
                     </div>
                 </div>
             </div>
+
             <div class="col-lg-6">
                 <div class="about-avatar">
                     <img class="rounded" src="{{cat.fileDownloadUri}}" alt="{{cat.fileName}}" width="300" height="300"
     (error) ="onImgError($event)">
                 </div>
-                <div class="media">
+                <div class="media about-list">
                     <label>Date Captured:</label>
                     <p>{{cat.dateCaptured}}</p>
                 </div>
-                <h6 class="theme-color lead">Notes:</h6>
+                <div class="media about-list">
+                    <label>Notes:</label>
                     <p>{{cat.notes}}</p>
+                    </div>
             </div>
         </div>
         
-        <div class="counter">
+        <div class="counter" id="button-footer">
             <div class="row">
                 <div class="col">
                     <div class="count-data text-center">
@@ -96,18 +99,18 @@
                             <a routerLink="/updateCat" [queryParams]="{ microchipNumber: cat.microchipNumber }" class="btn btn-primary">
                                 Update Profile
                             </a>
-                      
                         </div>
                     </div>
                 </div>
+
                 <div class="col">
                     <div class="count-data text-center">
                         <button type="button" class="btn btn-danger">Delete Profile</button>
                     </div>
                 </div>
-                
-               
             </div>
         </div>
+
     </div>
+
 </section>
