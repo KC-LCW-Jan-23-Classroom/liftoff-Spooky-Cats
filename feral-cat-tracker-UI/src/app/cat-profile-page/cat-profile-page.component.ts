@@ -19,6 +19,7 @@ export class CatProfilePageComponent {
   showDeleteButton= true;
   showDeleteErrorMessage = false;
   deleted = false;
+  deleteButtonText = "Delete Cat";
 
    
 
@@ -49,15 +50,16 @@ export class CatProfilePageComponent {
         this.deleted= true;
         this.showDeleteErrorMessage = false;
         
-    
+        if(confirm("Are you sure you want to delete " +this.cat.name +"? This cannot be undone!")){
     
         this.deleteCatService.deleteCatByMicrochipNumber(this.microchipNumber).subscribe(
     
           (result) => {
             {          
               this.showDeleteSuccessMessage = true;
-              this.showDeleteButton = false;
+              this.showDeleteButton = true;
               this.showDeleteErrorMessage = false;
+              this.deleteButtonText = "Cat Deleted!"
           setTimeout(() => {
                  this.router.navigate(['/find'],
                 
@@ -70,10 +72,11 @@ export class CatProfilePageComponent {
             this.showDeleteSuccessMessage = false;
             this.showDeleteButton = true; 
             this.showDeleteErrorMessage= true
+            this.deleteButtonText = "Delete Cat"
             
           }
         );
         }
-    
+      }
       }
   

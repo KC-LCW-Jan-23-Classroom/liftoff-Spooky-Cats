@@ -27,6 +27,7 @@ export class UpdateCatProfilePageComponent implements OnInit {
   selectedFiles: FileList;
   catForm!: FormGroup;
   formvalue : string;
+  updateButtonText = "Submit Updates"
 
   initForm() {
     this.catForm = new FormGroup(
@@ -117,8 +118,9 @@ export class UpdateCatProfilePageComponent implements OnInit {
           (result) => {
             {          
               this.showSuccessMessage = true;
-              this.showSubmitButton = false;
+              this.showSubmitButton = true;
               this.showSubmitErrorMessage = false;
+              this.updateButtonText= "Cat Updated Successfully!"
           setTimeout(() => {
                  this.router.navigate(['/catProfile'],
                   {queryParams:{ microchipNumber: this.updateCat.microchipNumber }}
@@ -131,6 +133,7 @@ export class UpdateCatProfilePageComponent implements OnInit {
             this.showSuccessMessage = false;
             this.showSubmitButton = true; 
             this.showSubmitErrorMessage= true
+            this.updateButtonText = "Submit Updates"
             
           }
         );
