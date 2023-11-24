@@ -97,5 +97,11 @@ public class CatDataService {
        return catRepository.findByMicrochipNumber(microchipNumber);
     }
 
+    public void deleteCatByMicrochip(String microchipNumber){
+        catRepository.delete(catRepository.findByMicrochipNumber(microchipNumber)
+        );
+
+    }
+
     // Create methods to call each repository method
 }

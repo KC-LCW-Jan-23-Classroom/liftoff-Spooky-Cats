@@ -41,6 +41,19 @@ public class CatDataController {
         return catDataService.findByMicrochip(microchipNumber);
     }
 
+    @PostMapping("/delete")
+    public ResponseEntity<ResponseMessage> deleteCatByMicrochipNumber(@RequestBody String microchipNumber){
+       ResponseEntity response;
+        try {
+           catDataService.deleteCatByMicrochip(microchipNumber);
+       } catch (Exception exception) {
+            response = ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Failed to delete cat");
+            return response;
+        }
+        response = ResponseEntity.status(HttpStatus.OK).body("Cat deleted.");
+        return response;
+    }
+
 
     @GetMapping("/results")
     public ResponseEntity<List<CatData>> findByQuery(@RequestParam("query") String query,
