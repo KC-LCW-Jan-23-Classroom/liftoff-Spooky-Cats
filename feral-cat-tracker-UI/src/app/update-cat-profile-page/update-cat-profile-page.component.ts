@@ -95,7 +95,7 @@ export class UpdateCatProfilePageComponent implements OnInit {
         this.showSubmitButton = true;
         this.submitted= true;
         this.showSubmitErrorMessage = false;
-        this.submitted= true;
+        
     
     if(this.selectedFiles != null){
       this.currentFile = this.selectedFiles.item(0);

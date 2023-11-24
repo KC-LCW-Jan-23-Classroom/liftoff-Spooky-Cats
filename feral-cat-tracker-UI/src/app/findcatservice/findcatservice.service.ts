@@ -31,6 +31,4 @@ export class FindcatserviceService {
     console.log('')
     return this.http.get<Cat[]>(`${this.findByMicrochipURL}?microchipNumber=${microchipNumber}`, { withCredentials: true });
   }
-
-  //todo maybe findcaybyid
 }

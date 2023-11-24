@@ -2,6 +2,8 @@ import { Component,Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Cat } from '../models/cat';
 import { FindcatserviceService } from '../findcatservice/findcatservice.service';
+import { DeleteCatServiceService } from '../delete-cat-service/delete-cat-service.service';
+import { Router } from '@angular/router';
 
 export type catSearchDisplay = Partial<Cat>
 
@@ -13,6 +15,10 @@ export type catSearchDisplay = Partial<Cat>
 export class CatProfilePageComponent {
   microchipNumber= ""
   cat!: Cat;
+  showDeleteSuccessMessage = false;
+  showDeleteButton= true;
+  showDeleteErrorMessage = false;
+  deleted = false;
 
    
 
@@ -21,9 +27,10 @@ export class CatProfilePageComponent {
 }
 
   
-    constructor(private route: ActivatedRoute, private findcatService: FindcatserviceService) {
-    
-       }
+    constructor(private route: ActivatedRoute, 
+      private findcatService: FindcatserviceService,
+       private deleteCatService: DeleteCatServiceService,
+       private router: Router) {}
   
        ngOnInit(): void {
         this.route.queryParams.subscribe((params: any) => {
@@ -35,4 +42,38 @@ export class CatProfilePageComponent {
           })
         }) 
       }
-  }
+
+      deleteCat() {
+        this.showDeleteSuccessMessage = false;
+        this.showDeleteButton = true;
+        this.deleted= true;
+        this.showDeleteErrorMessage = false;
+        
+    
+    
+        this.deleteCatService.deleteCatByMicrochipNumber(this.microchipNumber).subscribe(
+    
+          (result) => {
+            {          
+              this.showDeleteSuccessMessage = true;
+              this.showDeleteButton = false;
+              this.showDeleteErrorMessage = false;
+          setTimeout(() => {
+                 this.router.navigate(['/find'],
+                
+                  ); 
+          } , 5000);
+        }
+          
+          },
+          (error) => {
+            this.showDeleteSuccessMessage = false;
+            this.showDeleteButton = true; 
+            this.showDeleteErrorMessage= true
+            
+          }
+        );
+        }
+    
+      }
+  

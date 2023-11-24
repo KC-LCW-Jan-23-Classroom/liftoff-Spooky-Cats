@@ -130,3 +130,6 @@ input.ng-touched.ng-invalid {
   border: 1px solid red;
 }
 
+.showSubmitErrorMessage{
+  color:rgb(119, 15, 15)
+}

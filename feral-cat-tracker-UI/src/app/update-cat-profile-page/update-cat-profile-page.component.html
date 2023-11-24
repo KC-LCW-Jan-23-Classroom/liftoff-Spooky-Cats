@@ -187,8 +187,8 @@
                 <div class="row" >
                     <div class="col" >
                         <div class="count-data text-center" >
-                            <div class="btn-container">
-                                <button type="submit" class="btn btn-primary">Update Profile</button>
+                            <div *ngIf="showSubmitButton" class="btn-container">
+                                <button type="submit" class="btn btn-primary">Submit Updates</button>
                             </div>
                             <p  *ngIf="showSubmitErrorMessage" class="showSubmitErrorMessage">Unable to update cat. Please Try Again!</p>
                             <div *ngIf="showSuccessMessage" class="successMessage">Update Successful!</div>
