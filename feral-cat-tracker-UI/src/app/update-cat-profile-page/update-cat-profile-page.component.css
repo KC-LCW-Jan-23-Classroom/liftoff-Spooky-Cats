@@ -118,7 +118,7 @@ mark {
 }
 
 #button-footer{
-  background-color: #45b678;
+  background-color: #333;
 }
 
 
@@ -131,5 +131,5 @@ input.ng-touched.ng-invalid {
 }
 
 .showSubmitErrorMessage{
-  color:rgb(119, 15, 15)
+  color:#F89191
 }

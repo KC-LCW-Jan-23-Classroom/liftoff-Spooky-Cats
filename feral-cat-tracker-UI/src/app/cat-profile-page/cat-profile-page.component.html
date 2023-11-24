@@ -106,9 +106,9 @@
                 <div class="col">
                     <div *ngIf= "showDeleteButton" class="count-data text-center">
                         <button (click)="deleteCat()" type="button" class="btn btn-danger">{{deleteButtonText}}</button>
-                    </div>
-                    <p  *ngIf="showDeleteErrorMessage" class="showSubmitErrorMessage btn btn-danger">Unable to Delete. Please Try Again!</p>
-                   
+                    
+                    <p  *ngIf="showDeleteErrorMessage" class="showDeleteErrorMessage">Unable to Delete. Please Try Again!</p>
+                </div>
                 </div>
             </div>
         </div>

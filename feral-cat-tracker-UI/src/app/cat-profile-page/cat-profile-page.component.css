@@ -118,5 +118,9 @@ mark {
 }
 
 #button-footer{
-  background-color: #45b678;
+  background-color: #333;
+}
+
+.showDeleteErrorMessage{
+  color:#F89191
 }
