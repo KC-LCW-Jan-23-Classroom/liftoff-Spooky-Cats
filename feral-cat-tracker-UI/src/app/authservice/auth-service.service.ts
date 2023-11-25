@@ -8,7 +8,7 @@ import { Observable, map, tap } from 'rxjs';
 export class AuthServiceService {
   
   authenticated = false;
-  username: string | undefined;
+  username: string;
   constructor(private http: HttpClient) {}
   message: string;
   login(data: any): Observable<any> {

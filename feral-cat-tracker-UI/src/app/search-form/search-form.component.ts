@@ -24,7 +24,7 @@ export class SearchFormComponent {
     } else if (this.queryColor === 'color') {
       queryType = 'color';
     }else {
-      queryType = 'all'; // Default to "all" if no radio button is selected
+      queryType = 'all'; 
     }
     console.log(searchTerm + "Search Term");
     console.log(queryType + "Query type")
