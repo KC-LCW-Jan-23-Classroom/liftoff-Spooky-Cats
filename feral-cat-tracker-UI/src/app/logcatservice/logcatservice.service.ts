@@ -20,4 +20,18 @@ export class LogcatserviceService {
       withCredentials: true 
     });
   }
+  update(data: any, file: File): Observable<any>{
+    const formData: FormData = new FormData();
+      formData.append('cat', data);
+      formData.append('file', file);
+    
+    return this.http.post('http://localhost:8080/update', formData, {
+      reportProgress: true,
+      responseType: 'text',
+      withCredentials: true 
+    });
+  }
+
 }
+
+
