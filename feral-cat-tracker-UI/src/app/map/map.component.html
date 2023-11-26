@@ -1,0 +1,15 @@
+<br>
+<br>
+<h1>Cat Map</h1>
+<br>
+<div class="my-google-map">
+    <google-map [width]="null" [height]="null">
+      <map-marker *ngFor="let cat of catCoordinates" [position]="cat"></map-marker>
+    </google-map>
+</div>
+
+<body>
+<br>
+<p>Take a look at where cats have been logged!</p>
+<p>Community cat volunteers work all over making sure that cats are getting the care they need!</p>
+</body>

@@ -9,6 +9,7 @@ import { FindcatComponent } from './findcat/findcat.component';
 import { SearchResultsComponent } from './search-results/search-results.component';
 import { CatProfilePageComponent } from './cat-profile-page/cat-profile-page.component';
 import { UpdateCatProfilePageComponent } from './update-cat-profile-page/update-cat-profile-page.component';
+import { MapComponent } from './map/map.component';
 
 const routes: Routes = [
   {
@@ -49,9 +50,9 @@ const routes: Routes = [
     component:CatProfilePageComponent
   },
   { path: 'updateCat',
-  component:UpdateCatProfilePageComponent}
-  
-  
+  component:UpdateCatProfilePageComponent},
+  {path: 'map',
+  component:MapComponent}
 
 ];
 
