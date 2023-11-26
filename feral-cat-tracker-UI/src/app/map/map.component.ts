@@ -45,12 +45,12 @@ export class MapComponent implements OnInit {
           const point = new Position(loc.lat, loc.lng);
           this.catCoordinates.push(point);
           }
-
           const bounds = this.getBounds(this.catCoordinates);
           this.map.googleMap.fitBounds(bounds);
       })
 
     }
+    console.log(this.catCoordinates)
 
     }, (error) => {
       this.showLoadErrorMessage = true;
