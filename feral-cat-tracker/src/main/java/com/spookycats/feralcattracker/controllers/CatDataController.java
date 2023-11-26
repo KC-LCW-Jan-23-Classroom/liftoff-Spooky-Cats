@@ -70,6 +70,10 @@ public class CatDataController {
             return ResponseEntity.ok(catRepository.searchByColor(query));
         }
 
+        if ("all".equals(queryType)) {
+            return ResponseEntity.ok(catRepository.searchByAll(query));
+        }
+
         System.out.println("Received query: " + query);
         System.out.println("Received queryType: " + queryType);
 
