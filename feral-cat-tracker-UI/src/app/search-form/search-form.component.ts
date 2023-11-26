@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { query } from '@angular/animations';
 
@@ -8,32 +8,26 @@ import { query } from '@angular/animations';
   templateUrl: './search-form.component.html',
   styleUrls: ['./search-form.component.css'],
 })
-export class SearchFormComponent {
-  searchTerm!: string;
-  queryMicrochip!: string;
-  queryLocation!: string;
-  queryColor!: string;
-  constructor(private router: Router) {}
+export class SearchFormComponent implements OnInit {
+  searchTerm: string = '';
+  queryType: string = 'all';
+
+  constructor(private router: Router, private route: ActivatedRoute) {}
+
+  ngOnInit() {
+    this.route.queryParams.subscribe((params) => {
+      this.searchTerm = params['query'] || '';
+      this.queryType = params['queryType'] || 'all';
+    });
+  }
 
   searchCats({ searchTerm }: { searchTerm: string }) {
-   let queryType!: string;
-    if (this.queryMicrochip === 'microchip') {
-      queryType = 'microchip';
-    } else if (this.queryLocation === 'location') {
-      queryType = 'location';
-    } else if (this.queryColor === 'color') {
-      queryType = 'color';
-    }else {
-      queryType = 'all'; // Default to "all" if no radio button is selected
-    }
-    console.log(searchTerm + "Search Term");
-    console.log(queryType + "Query type")
-    console.log('queryMicrochip:', this.queryMicrochip);
-    console.log('queryLocation:', this.queryLocation);
-    console.log('queryColor' + this.queryColor)
+    console.log(searchTerm + 'Search Term');
+    console.log(this.queryType + 'Query type');
 
     this.router.navigate(['/results'], {
-      queryParams: { query: searchTerm, queryType: queryType },
+      queryParams: { query: this.searchTerm, queryType: this.queryType },
+      queryParamsHandling: 'merge',
     });
   }
 }
