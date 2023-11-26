@@ -4,9 +4,16 @@
 <br>
 <br>
 <div class="row">
+  <ng-container *ngIf="cats.length > 0; else noResultsMessage">
   <app-cat-card-ui *ngFor="let cat of cats" [cat]="cat"
     class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12 mb-4">
   </app-cat-card-ui>
+</ng-container>
+<ng-template #noResultsMessage>
+  <div class="col-12 text-center">
+    <p>No results found.</p>
+  </div>
+</ng-template>
 </div>
   <br>
   

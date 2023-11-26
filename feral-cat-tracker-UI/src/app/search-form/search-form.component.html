@@ -9,14 +9,18 @@
 </div>
 <br>
 <div class="form-check form-check-inline">
-    <input class="form-check-input" type="radio" name="queryType" id="microchip" value="microchip" [(ngModel)]="queryMicrochip">
+    <input class="form-check-input" type="radio" name="queryType" id="microchip" value="microchip" [(ngModel)]="queryType">
     <label class="form-check-label" for="inlineRadio1">Microchip Number</label>
 </div>
 <div class="form-check form-check-inline">
-    <input class="form-check-input" type="radio" name="queryType" id="location" value="location" [(ngModel)]="queryLocation">
+    <input class="form-check-input" type="radio" name="queryType" id="location" value="location" [(ngModel)]="queryType">
     <label class="form-check-label" for="inlineRadio2">Location</label>
 </div>
 <div class="form-check form-check-inline">
-    <input class="form-check-input" type="radio" name="queryType" id="color" value="color" [(ngModel)]="queryColor">
+    <input class="form-check-input" type="radio" name="queryType" id="color" value="color" [(ngModel)]="queryType">
     <label class="form-check-label" for="inlineRadio2">Color</label>
+</div>
+<div class="form-check form-check-inline">
+    <input class="form-check-input" type="radio" name="queryType" id="all" value="all" [(ngModel)]="queryType">
+    <label class="form-check-label" for="inlineRadio2">All</label>
 </div>
