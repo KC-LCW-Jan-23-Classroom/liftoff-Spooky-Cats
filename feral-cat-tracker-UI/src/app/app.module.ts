@@ -21,6 +21,8 @@ import { SearchFormComponent } from './search-form/search-form.component';
 import { SearchResultsComponent } from './search-results/search-results.component';
 import { CatProfilePageComponent } from './cat-profile-page/cat-profile-page.component';
 import { UpdateCatProfilePageComponent } from './update-cat-profile-page/update-cat-profile-page.component';
+import { GoogleMapsModule, GoogleMap } from '@angular/google-maps';
+import { MapComponent } from './map/map.component';
 
 
 
@@ -41,6 +43,7 @@ import { UpdateCatProfilePageComponent } from './update-cat-profile-page/update-
     SearchResultsComponent,
     CatProfilePageComponent,
     UpdateCatProfilePageComponent,
+    MapComponent
 
   ],
   imports: [
@@ -52,10 +55,11 @@ import { UpdateCatProfilePageComponent } from './update-cat-profile-page/update-
     NgxMaskDirective, 
     NgxMaskPipe,
     MatButtonModule,
-    MatTooltipModule
+    MatTooltipModule,
+    GoogleMapsModule
 
   ],
-  providers: [provideNgxMask()],
+  providers: [provideNgxMask(), GoogleMapsModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
