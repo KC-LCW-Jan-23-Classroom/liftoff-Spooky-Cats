@@ -47,3 +47,11 @@ body {
     align-items: center;
     padding-top: 34px;
 }
+
+img{
+    border: #45b678;
+    align-items: center;
+    margin:auto;
+    justify-content: center;
+    display: flex;
+  }

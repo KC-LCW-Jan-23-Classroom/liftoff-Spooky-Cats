@@ -13,8 +13,12 @@ h1{
     text-align: center;
 }
 
+h6{
+    font-style: italic;
+    text-align: center;
+}
+
 img{
     border: #45b678;
-    border-style: inset;
     align-items: center;
 }
