@@ -1,44 +1,80 @@
 import { Component, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { GoogleMap } from '@angular/google-maps';
+import { OnInit } from '@angular/core';
+import { Cat } from '../models/cat';
+import { FindcatserviceService } from '../findcatservice/findcatservice.service';
+import { Googleservice } from '../googleservice';
+import { GeocoderResponse } from '../geocoder-response';
+import { Marker, Position } from '../models/marker';
+
 
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
   styleUrl: './map.component.css'
 })
-export class MapComponent {
-  marker1 = { position: { lat: 38.9987208, lng: -77.2538699 } };
-  marker2 = { position: { lat: 39.7, lng: -76.0 } };
-  marker3 = { position: { lat: 37.9, lng: -76.8 } };
-  
-  markers = [this.marker1, this.marker2, this.marker3];
-  
-  
+export class MapComponent implements OnInit {
+
+  showLoadErrorMessage = false;
+  cats: Cat[] = [];
+  catAddress = [];
+  catCoordinates = [];
+  locationCoords?: google.maps.LatLng | null = null;
+
+  constructor(private findcatService: FindcatserviceService, private googleserviceService: Googleservice) {}
+ 
   @ViewChild(GoogleMap) map!: GoogleMap;
+  ngOnInit(){
+    this.findcatService.find().subscribe(data => {
+
+      this.showLoadErrorMessage = false;
+      this.cats = data;
+      for(let i=0; i < this.cats.length; i++){
+        this.catAddress.push(this.cats[i].addressLastSeen);
+    }
+    console.log(this.catAddress)
+
+    for(let i =0; i < this.catAddress.length; i++){
+      this.googleserviceService.getLocation(this.catAddress[i]).subscribe(
+        (response: GeocoderResponse) => {
+          if (response.status === 'OK' && response.results?.length) {
+          const location = response.results[0];
+          const loc: any = location.geometry.location;
+          this.locationCoords = new google.maps.LatLng(loc.lat, loc.lng);
+          const point = new Position(loc.lat, loc.lng);
+          this.catCoordinates.push(point);
+          }
+
+          const bounds = this.getBounds(this.catCoordinates);
+          this.map.googleMap.fitBounds(bounds);
+      })
+
+    }
+
+    }, (error) => {
+      this.showLoadErrorMessage = true;
+    })
   
-  ngAfterViewInit(){
-    const bounds = this.getBounds(this.markers);
-    this.map.googleMap.fitBounds(bounds);
   }
+
   
-  getBounds(markers){
+  getBounds(catCoordinates){
     let north;
     let south;
     let east;
     let west;
   
-    for (const marker of markers){
+    for (const marker of catCoordinates){
       // set the coordinates to marker's lat and lng on the first run.
       // if the coordinates exist, get max or min depends on the coordinates.
-      north = north !== undefined ? Math.max(north, marker.position.lat) : marker.position.lat;
-      south = south !== undefined ? Math.min(south, marker.position.lat) : marker.position.lat;
-      east = east !== undefined ? Math.max(east, marker.position.lng) : marker.position.lng;
-      west = west !== undefined ? Math.min(west, marker.position.lng) : marker.position.lng;
+      north = north !== undefined ? Math.max(north, marker.lat) : marker.lat;
+      south = south !== undefined ? Math.min(south, marker.lat) : marker.lat;
+      east = east !== undefined ? Math.max(east, marker.lng) : marker.lng;
+      west = west !== undefined ? Math.min(west, marker.lng) : marker.lng;
     };
-  
+
     const bounds = { north, south, east, west };
-  
     return bounds;
   }
 }

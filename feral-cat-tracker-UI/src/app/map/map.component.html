@@ -3,6 +3,6 @@
 
 <div class="my-google-map">
     <google-map [width]="null" [height]="null">
-      <map-marker *ngFor="let marker of markers" [position]="marker.position"></map-marker>
+      <map-marker *ngFor="let cat of catCoordinates" [position]="cat"></map-marker>
     </google-map>
   </div>
