@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { query } from '@angular/animations';
 
@@ -9,11 +9,22 @@ import { query } from '@angular/animations';
   styleUrls: ['./search-form.component.css'],
 })
 export class SearchFormComponent {
+  [x: string]: any;
   searchTerm!: string;
   queryMicrochip!: string;
   queryLocation!: string;
   queryColor!: string;
-  constructor(private router: Router) {}
+  queryAll!: string;
+  
+  constructor(private router: Router, private route: ActivatedRoute) {}
+
+  ngOnInit() {
+    this.route.queryParams.subscribe((params) => {
+      this.searchTerm = params['query'] || '';
+      this['queryType'] = params['queryType'] || '';
+
+    })
+  }
 
   searchCats({ searchTerm }: { searchTerm: string }) {
    let queryType!: string;
@@ -23,9 +34,13 @@ export class SearchFormComponent {
       queryType = 'location';
     } else if (this.queryColor === 'color') {
       queryType = 'color';
-    }else {
+    }else if (this.queryAll === 'all') {
       queryType = 'all'; 
+    } else {
+      queryType = 'all';
     }
+    
+
     console.log(searchTerm + "Search Term");
     console.log(queryType + "Query type")
     console.log('queryMicrochip:', this.queryMicrochip);
@@ -33,7 +48,7 @@ export class SearchFormComponent {
     console.log('queryColor' + this.queryColor)
 
     this.router.navigate(['/results'], {
-      queryParams: { query: searchTerm, queryType: queryType },
+      queryParams: { query: this.searchTerm, queryType: queryType },
     });
   }
 }
