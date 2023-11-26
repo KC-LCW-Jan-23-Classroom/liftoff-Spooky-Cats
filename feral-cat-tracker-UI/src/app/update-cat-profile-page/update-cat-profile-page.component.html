@@ -1,0 +1,208 @@
+<section class="section about-section gray-bg" id="about">
+    <div class="container" >
+        <form [formGroup]="catForm" (ngSubmit)="postUpdateCat()">
+        <div class="row align-items-center flex-row-reverse">
+            <div  class="col-lg-6">
+                <div class="about-text go-to">
+                    <h3 class="dark-color">{{updateCat.name}}</h3>
+                    <div class="row about-list">
+                        <div class="col-md-6">
+                            <div class="media">
+                                <label>Microchip Number:</label>
+                                <input type="text" value={{updateCat.microchipNumber}} 
+                                [readonly]="true"
+                                class="form-control" id="microchipNumber"
+                                    aria-describedby="microchipNumber"
+                                    matTooltip="microchipNumber"
+                                    matTooltipPosition="left" formControlName="microchipNumber"
+                                    [ngClass]="{ 'is-invalid': submitted && f['microchipNumber'].errors }">
+                                <div *ngIf="submitted && f['microchipNumber'].errors" class="invalid-feedback">
+                                    <div *ngIf="f['microchipNumber'].errors['required']">microchipNumber is required.</div>
+                                </div>
+                            </div>
+
+                            <div class="media">
+                                <label>Sex:</label>
+                                <select type="text" value={{updateCat.sex}} class="form-control" id="sex"
+                                    aria-describedby="sex" formControlName="sex"
+                                    [ngClass]="{ 'is-invalid': submitted && f['sex'].errors }">
+                                    <option [ngValue]="'Female'">Female</option>
+                                    <option [ngValue]="'Male'">Male</option>
+                                </select>
+                                <div *ngIf="submitted && f['sex'].errors" class="invalid-feedback">
+                                    <div *ngIf="f['sex'].errors['required']">Sex is required.</div>
+                                </div>
+                            </div>
+
+                            <div class="media">
+                                <label>General Location:</label>
+                                <input type="text" value={{updateCat.addressLastSeen}} class="form-control"
+                                    id="addressLastSeen" aria-describedby="addressLastSeen"
+                                    matTooltip="Enter the closest address the cat was last seen. Format: Street, City, State Zip (i.e. 100 main street, Kansas City, MO 64105)"
+                                    matTooltipPosition="left" formControlName="addressLastSeen"
+                                    [ngClass]="{ 'is-invalid': submitted && f['addressLastSeen'].errors }">
+                                <div *ngIf="submitted && f['addressLastSeen'].errors" class="invalid-feedback">
+                                    <div *ngIf="f['addressLastSeen'].errors['required']">Address last seen is required.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="media">
+                                <label>Breed:</label>
+                                <input type="text" value={{updateCat.breed}} class="form-control" id="breed"
+                                    aria-describedby="breed"
+                                    matTooltip="Enter breed or mixes such as Siamese, shorthair, ragdoll, fold, etc."
+                                    matTooltipPosition="left" formControlName="breed"
+                                    [ngClass]="{ 'is-invalid': submitted && f['breed'].errors }">
+                                <div *ngIf="submitted && f['breed'].errors" class="invalid-feedback">
+                                    <div *ngIf="f['breed'].errors['required']">Breed is required.</div>
+                                </div>
+                            </div>
+                            <div class="media">
+                                <label>Dominant Color:</label>
+                                <input type="text" value={{updateCat.color}} class="form-control" id="color"
+                                    aria-describedby="color"
+                                    matTooltip="Enter color of fur such as tortie, grey, calico, etc."
+                                    matTooltipPosition="left" formControlName="color"
+                                    [ngClass]="{ 'is-invalid': submitted && f['color'].errors }">
+                                <div *ngIf="submitted && f['color'].errors" class="invalid-feedback">
+                                    <div *ngIf="f['color'].errors['required']">Color is required.</div>
+                                </div>
+                            </div>
+                            <div class="media">
+                                <label>Fur Type:</label>
+                                <select type="furType" value={{updateCat.furType}} class="form-control" id="furType"
+                                    aria-describedby="furType"
+                                    matTooltip="Describe the length and type of fur the cat has."
+                                    matTooltipPosition="left" formControlName="furType"
+                                    [ngClass]="{ 'is-invalid': submitted && f['furType'].errors }">
+                                    <option [ngValue]="'Long Hair'">Long Hair</option>
+                                    <option [ngValue]="'Short Hair'">Short Hair</option>
+                                    <option [ngValue]="'Bald'">Bald</option>
+                                </select>
+                                <div *ngIf="submitted && f['furType'].errors" class="invalid-feedback">
+                                    <div *ngIf="f['furType'].errors['required']">Fur Type is required.</div>
+                                </div>
+                            </div>
+
+                            <div class="media">
+                                <label>Weight in Pounds:</label>
+                                <input type="number" min="0" value={{updateCat.weight}} class="form-control" id="weight"
+                                    aria-describedby="weight" matTooltip="Estimated or current weight of the cat"
+                                    matTooltipPosition="left" formControlName="weight">
+                            </div>
+                            <div class="media">
+                                <label>Approx. Age:</label>
+                                <input type="number" min="0" value={{updateCat.estimatedAge}} class="form-control"
+                                    id="weight" aria-describedby="estimatedAge"
+                                    matTooltip="Enter the estimated age of the cat in years." matTooltipPosition="left"
+                                    formControlName="estimatedAge">
+                            </div>
+                        </div>
+                            <div class="col-md-6">
+                                <div class="media">
+                                    <label>Altered Status:</label>
+                                    <select type="alteredStatus" value={{updateCat.alteredStatus}} class="form-control"
+                                        id="alteredStatus" aria-describedby="estimatedAge"
+                                        matTooltip="Select if the cat is spayed or intact." matTooltipPosition="left"
+                                        formControlName="alteredStatus">
+                                        <option [ngValue]="'Intact'">Intact</option>
+                                        <option [ngValue]="'Spayed / Neutered'">Spayed / Neutered</option>
+                                    </select>
+                                </div>
+
+                                <div class="media">
+                                    <label>Rabies Vaccine Date:</label>
+                                    <input type="date" class="form-control" value={{updateCat.rabiesVaccineDate}}
+                                        id="rabiesVaccineDate" aria-describedby="rabiesVaccineDate"
+                                        matTooltip="Enter most recent Rabies vaccine date." matTooltipPosition="left"
+                                        formControlName="rabiesVaccineDate">
+                                </div>
+                                <div class="media">
+                                    <label>Distemper Vaccine Date:</label>
+                                    <input type="date" class="form-control" value={{updateCat.distemperVaccineDate}}
+                                        id="distemperVaccineDate" aria-describedby="distemperVaccineDate"
+                                        matTooltip="Enter most recent Distemper vaccine date." matTooltipPosition="left"
+                                        formControlName="distemperVaccineDate">
+                                </div>
+                                <div class="media">
+                                    <label>FHV Vaccine Date:</label>
+                                    <input type="date" class="form-control" value={{updateCat.fhvVaccineDate}}
+                                        id="fhvVaccineDate" aria-describedby="fhvVaccineDate"
+                                        matTooltip="Enter most recent FHV vaccine date." matTooltipPosition="left"
+                                        formControlName="fhvVaccineDate">
+                                </div>
+                                <div class="media">
+                                    <label>FIV Vaccine Date:</label>
+                                    <input type="date" class="form-control" value={{updateCat.fivVaccineDate}}
+                                        id="fivVaccineDate" aria-describedby="fivVaccineDate"
+                                        matTooltip="Enter most recent FIV vaccine date." matTooltipPosition="left"
+                                        formControlName="fivVaccineDate">
+                                </div>
+                                <div class="media">
+                                    <label>FelV Vaccine Date:</label>
+                                    <input type="date" class="form-control" value={{updateCat.felvVaccineDate}}
+                                        id="felvVaccineDate" aria-describedby="felvVaccineDate"
+                                        matTooltip="Enter most recent FELV vaccine date." matTooltipPosition="left"
+                                        formControlName="felvVaccineDate">
+                                </div>
+                                <div class="media">
+                                    <label>Bordetella Vaccine Date:</label>
+                                    <input type="date" class="form-control" value={{updateCat.bordetellaVaccineDate}}
+                                        id="felvVaccineDate" aria-describedby="felvVaccineDate"
+                                        matTooltip="Enter most recent FELV vaccine date." matTooltipPosition="left"
+                                        formControlName="felvVaccineDate">
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="about-avatar">
+                        <img class="rounded" src="{{updateCat.fileDownloadUri}}" alt="{{updateCat.fileName}}"
+                            width="300" height="300" (error)="onImgError($event)">
+                    </div>
+                    <div class="form-group media about-list">
+                        <label for="image" class="form-label">Image:</label>
+                        <input type="file" name="image" class="form-control" id="image" aria-describedby="image"
+                            formControlName="image" rows="4" cols="50" accept="image/png, image/jpeg"
+                            (change)="selectFile($event)" />
+                    </div>
+                    <div class="media about-list">
+                        <label>Date Captured:</label>
+                        <input type="date" class="form-control" value={{updateCat.dateCaptured}} id="dateCaptured"
+                            aria-describedby="dateCaptured" matTooltip="Enter date captured." matTooltipPosition="left"
+                            formControlName="dateCaptured">
+                    </div>
+                    <div class="media about-list">
+                    <label>Notes:</label>
+                    <textarea type="text" class="form-control" id="notes" aria-describedby="notes"
+                        formControlName="notes" rows="4" cols="50">
+                        {{updateCat.notes}}
+                    </textarea>
+                    </div>
+                </div>
+            </div>        
+
+            <div class="counter" id="button-footer">
+                <div class="row" >
+                    <div class="col" >
+                        <div class="count-data text-center" >
+                            <div *ngIf="showSubmitButton" class="btn-container">
+                                <button type="submit" class="btn btn-primary">{{updateButtonText}}</button>
+                            </div>
+                            <p  *ngIf="showSubmitErrorMessage" class="showSubmitErrorMessage">Unable to update cat. Please Try Again!</p>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="count-data text-center">
+                            <a routerLink="/catProfile" [queryParams]="{ microchipNumber: updateCat.microchipNumber }"><button type="button" class="btn btn-danger">Cancel Changes</button></a>
+                        </div>
+                    </div>
+                </div>
+                </div>
+
+            </form>
+            </div>
+
+        </section>

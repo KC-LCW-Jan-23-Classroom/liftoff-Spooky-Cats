@@ -8,6 +8,7 @@ import { LogcatComponent } from './logcat/logcat.component';
 import { FindcatComponent } from './findcat/findcat.component';
 import { SearchResultsComponent } from './search-results/search-results.component';
 import { CatProfilePageComponent } from './cat-profile-page/cat-profile-page.component';
+import { UpdateCatProfilePageComponent } from './update-cat-profile-page/update-cat-profile-page.component';
 
 const routes: Routes = [
   {
@@ -46,7 +47,9 @@ const routes: Routes = [
   {
     path: 'catProfile',
     component:CatProfilePageComponent
-  }
+  },
+  { path: 'updateCat',
+  component:UpdateCatProfilePageComponent}
   
   
 

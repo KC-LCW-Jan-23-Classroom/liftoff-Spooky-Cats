@@ -41,6 +41,19 @@ public class CatDataController {
         return catDataService.findByMicrochip(microchipNumber);
     }
 
+    @PostMapping("/delete")
+    public ResponseEntity<ResponseMessage> deleteCatByMicrochipNumber(@RequestBody String microchipNumber){
+       ResponseEntity response;
+        try {
+           catDataService.deleteCatByMicrochip(microchipNumber);
+       } catch (Exception exception) {
+            response = ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Failed to delete cat");
+            return response;
+        }
+        response = ResponseEntity.status(HttpStatus.OK).body("Cat deleted.");
+        return response;
+    }
+
 
     @GetMapping("/results")
     public ResponseEntity<List<CatData>> findByQuery(@RequestParam("query") String query,
@@ -94,6 +107,32 @@ public class CatDataController {
         } catch (Exception e) {
             return response = ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body("Unable to save the cat, please try again.");
         }
+    }
+
+    @PostMapping( "/update")
+    public ResponseEntity<ResponseMessage> updateCat(@RequestParam("cat") String cat, @RequestPart(value = "file", required = false) MultipartFile file, HttpServletRequest request) throws IOException {
+        ResponseEntity response;
+        ObjectMapper mapper = new ObjectMapper();
+        CatDataFormDTO catDTO = mapper.readValue(cat, CatDataFormDTO.class);
+
+        if(catDTO.getMicrochipNumber() == null || catDTO.getMicrochipNumber().isBlank())
+        {
+            response = ResponseEntity.status(HttpStatus.BAD_REQUEST).body("All cats require a Microchip number.");
+            return response;
+        }
+        Boolean existingCat = catDataService.findExistingCat(catDTO);
+
+        try{
+            if(existingCat == true){
+                catDataService.updateCat(catDTO);
+                response = ResponseEntity.status(HttpStatus.OK).body("Existing Cat has been updated.");
+                return response;
+            }
+
+        } catch (Exception e) {
+            return response = ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body("Unable to save the cat, please try again.");
+        }
+        return response = ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body("Unable to save the cat, please try again.");
     }
 
     @GetMapping("/cat_data/{id}")
