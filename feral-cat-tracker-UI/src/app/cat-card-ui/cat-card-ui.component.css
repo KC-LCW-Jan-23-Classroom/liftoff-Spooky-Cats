@@ -3,6 +3,8 @@ img {
     padding-top: 5px;
 }
 .card{
-  background-color: #45b6787a;
+  border-color:  #45b678;;
+  border-width: thick;
+  background-color: #f5f5f5b4;
   
 }
